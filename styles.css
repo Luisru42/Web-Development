@@ -1,0 +1,178 @@
+:root {
+    --primary-color: rgb(120, 250, 211);
+    --background-dark: black;
+    --font-light: white;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--background-dark);
+    color: var(--font-light);
+    align-items: center; /* Centra horizontalmente los elementos del cuerpo */
+    justify-content: center; /* Centra verticalmente si es aplicable */
+    text-align: center;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+header, footer {
+    background: var(--secondary-color);
+    padding: 15px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--font-light);
+}
+
+#content, section {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 800px; /* Limita el ancho máximo del contenido */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    text-align: center;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+    margin: 10px 0;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#contactLink {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 25px 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#contactLink:hover {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+#contactLink:visited {
+    color: lightgreen;
+}
+
+#contactLink:active {
+    background-color: darkgreen;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    background-color: rgba(50, 50, 50, 0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    background-color: #0c0c0c;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input,
+textarea,
+button {
+    display: block;
+    width: 90%;
+    margin: 25px auto;
+    padding: 30px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #000000;
+    color: white;
+}
+
+button[type="button"] {
+    color: black;
+}
+
+button[type="submit"] {
+    color: black;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    animation: fadeIn 0.5s ease;
+}
+
+.img {
+    background-color: transparent;
+    /* Asegura que los GIFs no tengan fondo */
+    display: block;
+    /* Elimina márgenes no deseados */
+}
+img {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Evita los márgenes extras al lado de la imagen */
+    margin: auto; /* Centra la imagen dentro de su contenedor */
+    max-height: 20%; /* Asegura que la imagen no exceda la altura del contenedor */
+}
