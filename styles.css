@@ -170,7 +170,7 @@ button[type="submit"] {
     /* Elimina márgenes no deseados */
 }
 img {
-    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    max-width: 200%; /* Asegura que la imagen no exceda el ancho del contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Evita los márgenes extras al lado de la imagen */
     margin: auto; /* Centra la imagen dentro de su contenedor */
