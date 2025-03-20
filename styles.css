@@ -92,7 +92,7 @@ a {
 
 #contactLink:hover {
     background-color: var(--primary-color);
-    color: black;
+    color: rgb(84, 196, 248);
 }
 
 #contactLink:visited {
@@ -137,11 +137,10 @@ button {
 }
 
 button:hover {
-    background-color: #000000;
-    color: white;
+    background-color: #4503fa;
 }
 
-button[type="button"] {
+button[type="close"] {
     color: black;
 }
 
@@ -179,4 +178,9 @@ img {
     body {
         font-size: 16px;
     }
+}
+.mint-green {
+    color: #98FF98; /* Verde menta */
+    font-weight: bold; /* Opcional, para destacarlo más */
+    text-decoration: none; /* Opcional, para quitar subrayado */
 }
