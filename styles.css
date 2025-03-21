@@ -8,14 +8,18 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
     margin: 0;
     padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background: var(--background-dark);
     color: var(--font-light);
-    align-items: center; /* Centra horizontalmente los elementos del cuerpo */
-    justify-content: center; /* Centra verticalmente si es aplicable */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 100vh; /* Asegura que ocupa el alto total de la pantalla */
+    margin: 0;
+    flex-direction: column; /* Ordena elementos en columna */
     text-align: center;
+    font-size: 20px;
+    line-height: 1.6;
+    overflow-x: hidden;/* Evita la barra de desplazamiento horizontal */
 }
 
 canvas {
@@ -176,7 +180,7 @@ img {
 }
 @media (max-width: 768px) {
     body {
-        font-size: 16px;
+        font-size: 19px;
     }
 }
 .mint-green {
