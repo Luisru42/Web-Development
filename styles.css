@@ -1,190 +1,290 @@
 :root {
     --primary-color: rgb(120, 250, 211);
+    /* Define el color primario para elementos interactivos */
     --background-dark: black;
+    /* Define el color de fondo principal como negro */
     --font-light: white;
+    /* Define el color de fuente principal como blanco */
+    --secondary-color: #222;
+    /* Añadido para header y footer: Define un color secundario para encabezado y pie de página */
+}
+
+* {
+    box-sizing: border-box;
+    /* Incluye el padding y el borde en el ancho y alto total de un elemento */
 }
 
 body {
     font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
-    margin: 0;
-    padding: 0 20px;
+    /* Define la familia de fuentes para el cuerpo del documento */
     background: var(--background-dark);
+    /* Aplica el color de fondo definido por la variable */
     color: var(--font-light);
+    /* Aplica el color de fuente definido por la variable */
     display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    min-height: 100vh; /* Asegura que ocupa el alto total de la pantalla */
-    margin: 0;
-    flex-direction: column; /* Ordena elementos en columna */
-    text-align: center;
-    font-size: 20px;
+    /* Utiliza Flexbox para el diseño */
+    flex-direction: column;
+    /* Ordena los elementos en columna */
+    align-items: center;
+    /* Centra los elementos horizontalmente en el contenedor Flexbox */
+    min-height: 100vh;
+    /* Establece la altura mínima del cuerpo al 100% de la altura de la ventana */
+    font-size: 1.25rem;
+    /* Establece el tamaño de la fuente base (20px si 1rem=16px) */
     line-height: 1.6;
-    overflow-x: hidden;/* Evita la barra de desplazamiento horizontal */
+    /* Establece el interlineado para mejorar la legibilidad */
+    overflow-x: hidden;
+    /* Evita la barra de desplazamiento horizontal */
+    text-align: center;
+    /* Centra el texto horizontalmente */
 }
 
 canvas {
     position: fixed;
+    /* Posiciona el canvas de manera fija en la ventana del navegador */
     top: 0;
+    /* Lo coloca en la parte superior de la ventana */
     left: 0;
+    /* Lo coloca en el lado izquierdo de la ventana */
     width: 100%;
+    /* Establece el ancho al 100% de su contenedor (la ventana) */
     height: 100%;
+    /* Establece la altura al 100% de su contenedor (la ventana) */
     z-index: -1;
+    /* Lo coloca detrás de otros elementos en el orden de apilamiento */
 }
 
-header, footer {
+header,
+footer {
     background: var(--secondary-color);
+    /* Aplica el color de fondo secundario */
     padding: 15px;
-    margin: 0 auto;
-    text-align: center;
+    /* Añade relleno alrededor del contenido */
     position: relative;
+    /* Permite posicionar elementos hijos de manera relativa a este elemento */
     z-index: 1;
+    /* Asegura que el encabezado y el pie de página estén por encima del canvas */
     max-width: 1000px;
-    text-align: center;
+    /* Establece un ancho máximo para el encabezado y el pie de página */
+    width: 100%;
+    /* Establece el ancho al 100% de su contenedor */
 }
 
 nav ul {
     list-style: none;
+    /* Elimina los estilos de lista (puntos, números) */
     padding: 0;
+    /* Elimina el relleno interno de la lista */
     margin: 0;
+    /* Elimina el margen externo de la lista */
     display: flex;
+    /* Utiliza Flexbox para el diseño de la navegación */
     justify-content: center;
+    /* Centra los elementos de la lista horizontalmente */
 }
 
 nav ul li {
     margin: 0 15px;
+    /* Añade margen horizontal entre los elementos de la lista */
 }
 
 nav ul li a {
     text-decoration: none;
+    /* Elimina el subrayado de los enlaces */
     color: var(--font-light);
+    /* Aplica el color de fuente definido por la variable */
 }
 
-#content, section {
+#content,
+section {
     flex: 1;
+    /* Permite que el contenido se expanda para ocupar el espacio restante en Flexbox */
     padding: 20px;
-    text-align: center;
+    /* Añade relleno alrededor del contenido */
     position: relative;
+    /* Permite posicionar elementos hijos de manera relativa a este elemento */
     z-index: 1;
-    max-width: 800px; /* Limita el ancho máximo del contenido */
-    margin: 0 auto; /* Centra el contenido horizontalmente */
-    text-align: center;
+    /* Asegura que el contenido esté por encima del canvas */
+    max-width: 800px;
+    /* Establece un ancho máximo para el contenido */
+    width: 100%;
+    /* Establece el ancho al 100% de su contenedor */
+    margin: 0 auto;
+    /* Centra el contenido horizontalmente */
 }
 
 section {
-    padding: 20px;
-    text-align: center;
     margin: 10px 0;
+    /* Añade margen vertical alrededor de las secciones */
     border-radius: 8px;
-    position: relative;
-    z-index: 1;
+    /* Añade bordes redondeados a las secciones */
 }
 
 a {
     text-decoration: none;
+    /* Elimina el subrayado de los enlaces */
     color: inherit;
+    /* Hereda el color del texto del elemento padre */
 }
 
 #contactLink {
     text-decoration: none;
+    /* Elimina el subrayado del enlace de contacto */
     color: var(--primary-color);
+    /* Aplica el color primario al enlace de contacto */
     font-weight: bold;
-    padding: 25px 30px;
+    /* Establece el texto en negrita */
+    padding: 0.75rem 1rem;
+    /* Añade relleno (12px arriba/abajo, 16px izquierda/derecha si 1rem = 16px) */
     border: 2px solid var(--primary-color);
+    /* Añade un borde alrededor del enlace de contacto */
     border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Añade bordes redondeados al enlace de contacto */
+    transition: all 0.3s ease;
+    /* Añade una transición suave para todas las propiedades durante 0.3 segundos */
 }
 
 #contactLink:hover {
     background-color: var(--primary-color);
-    color: rgb(84, 196, 248);
+    /* Cambia el color de fondo al color primario en hover */
+    color: #54c4f8;
+    /* Cambia el color del texto a un tono azul claro en hover */
 }
 
 #contactLink:visited {
     color: lightgreen;
+    /* Cambia el color del enlace visitado a verde claro */
 }
 
 #contactLink:active {
     background-color: darkgreen;
+    /* Cambia el color de fondo a verde oscuro cuando el enlace está activo (siendo clickeado) */
     color: white;
+    /* Cambia el color del texto a blanco cuando el enlace está activo */
 }
 
 .modal {
     display: none;
+    /* Oculta el modal por defecto */
     position: fixed;
+    /* Posiciona el modal de manera fija en la ventana del navegador */
     background-color: rgba(50, 50, 50, 0.8);
+    /* Aplica un fondo semitransparente oscuro */
     top: 0;
+    /* Lo coloca en la parte superior de la ventana */
     left: 0;
+    /* Lo coloca en el lado izquierdo de la ventana */
     width: 100%;
+    /* Establece el ancho al 100% de la ventana */
     height: 100%;
+    /* Establece la altura al 100% de la ventana */
 }
 
 .modal-content {
     background-color: #0c0c0c;
+    /* Aplica un color de fondo casi negro al contenido del modal */
     margin: 10% auto;
+    /* Centra el contenido del modal vertical y horizontalmente */
     padding: 20px;
+    /* Añade relleno alrededor del contenido del modal */
     width: 50%;
+    /* Establece el ancho del contenido del modal al 50% de su contenedor */
     color: var(--primary-color);
+    /* Aplica el color primario al texto dentro del modal */
     border-radius: 10px;
+    /* Añade bordes redondeados al contenido del modal */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Añade una sombra sutil al contenido del modal */
 }
 
 input,
 textarea,
 button {
     display: block;
+    /* Hace que los elementos se muestren como bloques, ocupando todo el ancho disponible */
     width: 90%;
-    margin: 25px auto;
-    padding: 30px;
-    font-size: 14px;
+    /* Establece el ancho al 90% de su contenedor */
+    max-width: 400px;
+    /* Establece un ancho máximo de 400px */
+    margin: 1rem auto;
+    /* Añade margen vertical (16px si 1rem = 16px) y centra horizontalmente */
+    padding: 0.75rem;
+    /* Añade relleno (12px si 1rem = 16px) */
+    font-size: 1rem;
+    /* Establece el tamaño de la fuente */
     border: 1px solid #ccc;
+    /* Añade un borde de 1px de color gris claro */
     border-radius: 5px;
+    /* Añade bordes redondeados */
 }
 
 button:hover {
     background-color: #4503fa;
+    /* Cambia el color de fondo del botón en hover a un tono púrpura */
 }
 
 button[type="close"] {
     color: black;
+    /* Establece el color del texto del botón de cerrar en negro */
 }
 
 button[type="submit"] {
     color: black;
+    /* Establece el color del texto del botón de enviar en negro */
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
+        /* Establece la opacidad inicial en 0 */
     }
 
     to {
         opacity: 1;
+        /* Establece la opacidad final en 1 */
     }
 }
 
 .modal {
     animation: fadeIn 0.5s ease;
+    /* Aplica la animación fadeIn al modal durante 0.5 segundos con una curva de aceleración suave */
 }
 
 .img {
     background-color: transparent;
-    /* Asegura que los GIFs no tengan fondo */
+    /* Establece el fondo de las imágenes como transparente */
     display: block;
-    /* Elimina márgenes no deseados */
+    /* Hace que las imágenes se muestren como bloques */
 }
+
 img {
-    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Evita los márgenes extras al lado de la imagen */
-    margin: auto; /* Centra la imagen dentro de su contenedor */
+    max-width: 100%;
+    /* Asegura que el ancho de la imagen no exceda su contenedor */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
+    display: block;
+    /* Evita espacios extra debajo de la imagen */
+    margin: auto;
+    /* Centra la imagen horizontalmente */
 }
+
 @media (max-width: 768px) {
     body {
         font-size: 19px;
+        /* Reduce el tamaño de la fuente en pantallas más pequeñas */
     }
 }
+
 .mint-green {
-    color: #98FF98; /* Verde menta */
-    font-weight: bold; /* Opcional, para destacarlo más */
-    text-decoration: none; /* Opcional, para quitar subrayado */
+    color: #98ff98;
+    /* Establece el color del texto en verde menta */
+    font-weight: bold;
+    /* Establece el texto en negrita */
+    text-decoration: none;
+    /* Elimina el subrayado */
 }
+.container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    }
