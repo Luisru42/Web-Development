@@ -1,3 +1,4 @@
+console.log("Node server is starting...");
 {
   "name": "capstone-project",
   "version": "1.0.0",
