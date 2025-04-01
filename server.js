@@ -1,12 +1,12 @@
 // server.js (or node-server.js)
-const express = require('express');
-const cors = require('cors');
+import express, { urlencoded, json } from 'express';
+import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(json());
 
 app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
