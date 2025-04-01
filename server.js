@@ -1,23 +1,33 @@
 // server.js (or node-server.js)
-import express, { urlencoded, json } from 'express';
-import cors from 'cors';
+
+const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Use cors middleware first
 app.use(cors());
-app.use(urlencoded({ extended: true }));
-app.use(json());
+
+// Use Express's built-in body parsing middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.post('/send-email', (req, res) => {
-  const { name, email, message } = req.body;
-  console.log("received form submission");
-  console.log(name, email, message);
+    console.log("Received POST request to /send-email");
+    console.log("Request Body:", req.body);
 
-  // Implement your email sending logic here using nodemailer or another library.
+    const { name, email, message } = req.body;
 
-  res.send('Email sent successfully!');
+    // Implement your email sending logic here using nodemailer or another library.
+
+    res.send('Email sent successfully!');
+});
+
+// Temporary test route
+app.post('/test-route', (req, res) => {
+    res.send('Test route hit!');
 });
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+    console.log(`Server listening on port ${port}`);
 });
