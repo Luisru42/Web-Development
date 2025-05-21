@@ -312,20 +312,20 @@ img {
         flex-direction: row; /* Arrange items horizontally on larger screens */
         justify-content: center; /* Center the whole section */
         align-items: flex-start; /* Align items to the top of the flex container */
-        text-align: left; /* Align text within this section to the left */
+        text-align: center; /* Align text within this section to the left */
     }
 
     .main-profile-section img {
         flex-shrink: 0; /* Prevent the image from shrinking too much */
         margin-right: 40px; /* Add space to the right of the image */
-        margin-left: 0; /* Override `margin: auto` from global img rule */
+        margin-left: 40px; /* Add space to the left of the image */
         width: 200px; /* Keep original width if desired, or adjust */
         height: auto; /* Maintain aspect ratio */
     }
 
     .profile-info {
         flex-grow: 1; /* Allow the info block to take available space */
-        text-align: left; /* Ensure text is left-aligned on larger screens */
+        text-align: center; /* Ensure text is left-aligned on larger screens */
     }
 }
 
