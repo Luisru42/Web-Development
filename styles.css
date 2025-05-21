@@ -183,11 +183,11 @@ a {
 .modal-content {
     background-color: #0c0c0c;
     /* Aplica un color de fondo casi negro al contenido del modal */
-    margin: 10% auto;
+    margin: 5% auto;
     /* Centra el contenido del modal vertical y horizontalmente */
     padding: 20px;
     /* Añade relleno alrededor del contenido del modal */
-    width: 50%;
+    width: 90%;
     /* Establece el ancho del contenido del modal al 50% de su contenedor */
     color: var(--primary-color);
     /* Aplica el color primario al texto dentro del modal */
@@ -268,13 +268,6 @@ img {
     /* Centra la imagen horizontalmente */
 }
 
-@media (max-width: 768px) {
-    body {
-        font-size: 19px;
-        /* Reduce el tamaño de la fuente en pantallas más pequeñas */
-    }
-}
-
 .mint-green {
     color: #98ff98;
     /* Establece el color del texto en verde menta */
@@ -298,4 +291,45 @@ img {
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+}
+.main-profile-section {
+    display: flex; /* Make this a flex container */
+    flex-direction: column; /* Stack items vertically by default for mobile */
+    align-items: center; /* Center items horizontally when stacked */
+    gap: 20px; /* Space between the stacked items */
+    width: 100%; /* Take full width within its parent */
+    max-width: 800px; /* Adhere to main's max-width, or adjust if needed */
+    margin-bottom: 30px; /* Add some space below this section */
+}
+
+.profile-info {
+    text-align: center; /* Center text within this block on mobile */
+}
+
+/* Media query for larger screens (e.g., tablets and desktops) */
+@media (min-width: 769px) { /* This breakpoint aligns with your existing media query */
+    .main-profile-section {
+        flex-direction: row; /* Arrange items horizontally on larger screens */
+        justify-content: center; /* Center the whole section */
+        align-items: flex-start; /* Align items to the top of the flex container */
+        text-align: left; /* Align text within this section to the left */
+    }
+
+    .main-profile-section img {
+        flex-shrink: 0; /* Prevent the image from shrinking too much */
+        margin-right: 40px; /* Add space to the right of the image */
+        margin-left: 0; /* Override `margin: auto` from global img rule */
+        width: 200px; /* Keep original width if desired, or adjust */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .profile-info {
+        flex-grow: 1; /* Allow the info block to take available space */
+        text-align: left; /* Ensure text is left-aligned on larger screens */
+    }
+}
+
+/* Adjustments for existing elements that might conflict or need centering */
+#content h2, #content p {
+    text-align: center; /* Ensure default centering for content paragraphs */
 }
