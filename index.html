@@ -6,7 +6,7 @@
     <title>BuildWithRu - Full Stack Developer Portfolio</title>
     <link rel="icon" type="image/png" href="./images/favicon-32x32.png">
     <link rel="stylesheet" href="styles.css" />
-    <link rel="preload" href="backgroundParticles.js" as="script">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="backgroundCanvas" aria-hidden="true" role="presentation"></canvas>
@@ -25,7 +25,7 @@
     </header>
     <main id="content">
         <section class="hero-section" aria-labelledby="hero-heading">
-            <img src="Luisru.jpg" alt="Profile picture of Luis Ruben Gonzalez Pagan" width="200" height="200" loading="lazy" class="profile-picture" />
+            <img src="/images/Luisru.jpg" alt="Profile picture of Luis Ruben Gonzalez Pagan" width="200" height="200" loading="lazy" class="profile-picture" />
             <div class="profile-info">
                 <h2 id="hero-heading">Hello there --&gt;</h2>
                 <p>My name is:</p>
@@ -91,17 +91,16 @@
                 <div class="modal-content">
                     <h3 id="contact-form-title">Send me a message</h3>
                     <form id="contact-form" action="https://formspree.io/f/your-form-id" method="post">
-                        <label for="name">Name: Luis R. Gonzalez Pagan
-                        <input type="text" id="name" name="name" required autocomplete="name" /><br />
-                        <label for="email">Email: gonzalez.engineer42@gmail.com
-                        <input type="email" id="email" name="email" required autocomplete="email" /><br />
-                        <label for="message">Phone: (939)380-5424
-                        <textarea id="message" name="message" required></textarea><br />
                         <div class="modal-actions">
                             <button type="button" class="close-btn">Close</button>
-                            <button type="submit" class="submit-btn">Submit</button>
                         </div>
                     </form>
+                    <p>My contact information:</p>
+                    <ul>
+                        <li><strong>Name:</strong> Luis R. Gonzalez Pagan</li>
+                        <li><strong>Email:</strong> gonzalez.engineer42@gmail.com</li>
+                        <li><strong>Phone:</strong> (939) 380-5424</li>
+                    </ul>
                 </div>
             </div>
         </section>
