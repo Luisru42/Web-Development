@@ -1,33 +1,120 @@
-// server.js (or node-server.js)
+// modalHandler.js
 
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const port = process.env.PORT || 3000;
+document.addEventListener('DOMContentLoaded', () => {
+    const contactModal = document.getElementById('contactModal');
+    const openModalBtn = document.querySelector('.open-modal-btn');
+    const closeBtn = contactModal.querySelector('.close-btn');
+    const submitBtn = contactModal.querySelector('.submit-btn'); // Get the submit button
 
-// Use cors middleware first
-app.use(cors());
+    if (!contactModal || !openModalBtn || !closeBtn) {
+        console.error('Modal elements not found. Please check your HTML IDs and classes.');
+        return; // Exit if essential elements are missing
+    }
 
-// Use Express's built-in body parsing middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+    // Function to open the modal
+    const openModal = () => {
+        contactModal.classList.add('is-visible');
+        contactModal.setAttribute('aria-hidden', 'false');
+        // Set focus to the first interactive element inside the modal for accessibility
+        const firstFocusableElement = contactModal.querySelector('input, textarea, button');
+        if (firstFocusableElement) {
+            firstFocusableElement.focus();
+        }
+        // Add event listener to close modal if clicking outside
+        contactModal.addEventListener('click', closeModalOutside);
+    };
 
-app.post('/send-email', (req, res) => {
-    console.log("Received POST request to /send-email");
-    console.log("Request Body:", req.body);
+    // Function to close the modal
+    const closeModal = () => {
+        contactModal.classList.remove('is-visible');
+        contactModal.setAttribute('aria-hidden', 'true');
+        // Remove event listener to prevent memory leaks
+        contactModal.removeEventListener('click', closeModalOutside);
+        // Return focus to the element that opened the modal (optional, but good for accessibility)
+        openModalBtn.focus();
+    };
 
-    const { name, email, message } = req.body;
+    // Function to close modal if click is outside the modal-content
+    const closeModalOutside = (event) => {
+        if (event.target === contactModal) {
+            closeModal();
+        }
+    };
 
-    // Implement your email sending logic here using nodemailer or another library.
+    // Event Listeners
+    openModalBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
 
-    res.send('Email sent successfully!');
-});
+    // Close modal with ESC key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && contactModal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
 
-// Temporary test route
-app.post('/test-route', (req, res) => {
-    res.send('Test route hit!');
-});
+    // Handle form submission (optional: add AJAX/fetch for a smoother experience)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+            const formData = new FormData(contactForm);
+            const formUrl = contactForm.getAttribute('action');
+
+            try {
+                // Display a loading indicator if desired (e.g., disable submit button)
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                const response = await fetch(formUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Important for Formspree to return JSON
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset(); // Clear the form
+                    closeModal(); // Close the modal
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        alert(`Error: ${data.errors.map(error => error.message).join(', ')}`);
+                    } else {
+                        alert('Oops! There was a problem sending your message. Please try again.');
+                    }
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                // Re-enable submit button and reset text
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            }
+        });
+    }
+
+    // Optional: Section fade-in on scroll (Intersection Observer)
+    const sections = document.querySelectorAll('section:not(.hero-section)'); // Exclude hero if it's always visible
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the section is visible
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible'); // Add a class to trigger animation
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
 });

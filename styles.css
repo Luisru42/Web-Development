@@ -1,335 +1,505 @@
+/* --- CSS Variables --- */
 :root {
-    --primary-color: rgb(120, 250, 211);
-    /* Define el color primario para elementos interactivos */
-    --background-dark: black;
-    /* Define el color de fondo principal como negro */
-    --font-light: white;
-    /* Define el color de fuente principal como blanco */
-    --secondary-color: #222;
-    /* Añadido para header y footer: Define un color secundario para encabezado y pie de página */
+    /* Primary brand colors */
+    --clr-primary-mint: rgb(120, 250, 211); /* Used for accents, links, and interactive elements */
+    --clr-primary-blue: #54c4f8; /* A complementary blue for interactive states */
+
+    /* Grayscale/neutral colors */
+    --clr-bg-dark: black; /* Main background color */
+    --clr-bg-light-dark: #0c0c0c; /* For modal content background */
+    --clr-text-light: white; /* Main text color */
+    --clr-secondary-dark: #222; /* For header and footer backgrounds */
+    --clr-border-light: #ccc; /* Light gray for borders */
+
+    /* Font sizes */
+    --fs-base: 1.125rem; /* Base font size (18px) */
+    --fs-large: 1.25rem; /* Larger font size for specific elements (20px) */
+    --fs-heading-1: 3rem; /* H1 size */
+    --fs-heading-2: 2.25rem; /* H2 size */
+    --fs-heading-3: 1.75rem; /* H3 size */
+
+    /* Spacing */
+    --space-sm: 0.75rem; /* 12px */
+    --space-md: 1rem;    /* 16px */
+    --space-lg: 1.5rem;  /* 24px */
+    --space-xl: 2rem;    /* 32px */
+    --space-xxl: 3rem;   /* 48px */ /* Added for larger padding */
+
+    /* Border radius */
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+
+    /* Transitions */
+    --transition-ease: all 0.3s ease;
 }
 
-* {
-    box-sizing: border-box;
-    /* Incluye el padding y el borde en el ancho y alto total de un elemento */
+/* --- Universal Box Sizing & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box; /* Includes padding and border in element's total width/height */
+    margin: 0; /* Reset default margins */
+    padding: 0; /* Reset default paddings */
 }
 
+/* --- Body Styles --- */
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
-    /* Define la familia de fuentes para el cuerpo del documento */
-    background: var(--background-dark);
-    /* Aplica el color de fondo definido por la variable */
-    color: var(--font-light);
-    /* Aplica el color de fuente definido por la variable */
+    /* Consider linking 'Montserrat' from Google Fonts in your HTML <head> */
+    /* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> */
+    font-family: 'Montserrat', sans-serif; /* Using a more modern, readable font */
+    background: var(--clr-bg-dark);
+    color: var(--clr-text-light);
     display: flex;
-    /* Utiliza Flexbox para el diseño */
     flex-direction: column;
-    /* Ordena los elementos en columna */
-    align-items: center;
-    /* Centra los elementos horizontalmente en el contenedor Flexbox */
+    align-items: center; /* Centers main content horizontally */
     min-height: 100vh;
-    /* Establece la altura mínima del cuerpo al 100% de la altura de la ventana */
-    font-size: 1.25rem;
-    /* Establece el tamaño de la fuente base (20px si 1rem=16px) */
+    font-size: var(--fs-base);
     line-height: 1.6;
-    /* Establece el interlineado para mejorar la legibilidad */
-    overflow-x: hidden;
-    /* Evita la barra de desplazamiento horizontal */
-    text-align: center;
-    /* Centra el texto horizontalmente */
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
+    text-align: center; /* Default text alignment for direct children of body */
+    -webkit-font-smoothing: antialiased; /* Smoother font rendering on macOS/iOS */
+    -moz-osx-font-smoothing: grayscale; /* Smoother font rendering on macOS/iOS */
 }
 
-canvas {
+/* --- Canvas Background --- */
+#backgroundCanvas {
     position: fixed;
-    /* Posiciona el canvas de manera fija en la ventana del navegador */
     top: 0;
-    /* Lo coloca en la parte superior de la ventana */
     left: 0;
-    /* Lo coloca en el lado izquierdo de la ventana */
     width: 100%;
-    /* Establece el ancho al 100% de su contenedor (la ventana) */
     height: 100%;
-    /* Establece la altura al 100% de su contenedor (la ventana) */
-    z-index: -1;
-    /* Lo coloca detrás de otros elementos en el orden de apilamiento */
+    z-index: -1; /* Puts it behind all other content */
+    display: block; /* Ensure it behaves as a block element */
 }
 
-header,
-footer {
-    background: var(--secondary-color);
-    /* Aplica el color de fondo secundario */
-    padding: 15px;
-    /* Añade relleno alrededor del contenido */
+/* --- Header & Footer Styles --- */
+.site-header,
+.site-footer {
+    background: var(--clr-secondary-dark);
+    padding: var(--space-md) var(--space-lg); /* Consistent padding */
     position: relative;
-    /* Permite posicionar elementos hijos de manera relativa a este elemento */
-    z-index: 1;
-    /* Asegura que el encabezado y el pie de página estén por encima del canvas */
-    max-width: 1000px;
-    /* Establece un ancho máximo para el encabezado y el pie de página */
+    z-index: 10; /* Ensures header/footer are above other content */
     width: 100%;
-    /* Establece el ancho al 100% de su contenedor */
+    max-width: 1200px; /* Increased max-width for a wider layout if desired */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
 
-nav ul {
-    list-style: none;
-    /* Elimina los estilos de lista (puntos, números) */
-    padding: 0;
-    /* Elimina el relleno interno de la lista */
-    margin: 0;
-    /* Elimina el margen externo de la lista */
+.site-header {
+    margin-bottom: var(--space-xl); /* Space below the header */
+}
+
+.header-content {
     display: flex;
-    /* Utiliza Flexbox para el diseño de la navegación */
+    flex-direction: column; /* Stacks on small screens */
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    max-width: 900px; /* Constrain header content width */
+    margin: 0 auto; /* Center header content */
+}
+
+.site-header h1 {
+    font-size: var(--fs-heading-2); /* Adjusted heading size */
+    color: var(--clr-primary-mint);
+    margin-bottom: var(--space-sm);
+}
+
+.site-footer {
+    margin-top: var(--space-xl); /* Space above the footer */
+}
+
+.site-footer p {
+    font-size: var(--fs-base);
+}
+
+/* --- Navigation Styles --- */
+.main-nav-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     justify-content: center;
-    /* Centra los elementos de la lista horizontalmente */
+    gap: var(--space-lg); /* Space between nav items */
 }
 
-nav ul li {
-    margin: 0 15px;
-    /* Añade margen horizontal entre los elementos de la lista */
-}
-
-nav ul li a {
+.main-nav-list li a {
     text-decoration: none;
-    /* Elimina el subrayado de los enlaces */
-    color: var(--font-light);
-    /* Aplica el color de fuente definido por la variable */
+    color: var(--clr-text-light);
+    padding: var(--space-sm) var(--space-md); /* Add padding for larger click area */
+    transition: var(--transition-ease);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-base);
+    font-weight: 500; /* Slightly bolder */
 }
 
-#content,
-section {
-    flex: 1;
-    /* Permite que el contenido se expanda para ocupar el espacio restante en Flexbox */
-    padding: 20px;
-    /* Añade relleno alrededor del contenido */
+.main-nav-list li a:hover,
+.main-nav-list li a:focus { /* Add focus state for accessibility */
+    color: var(--clr-primary-mint);
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* --- Main Content & Section Styles --- */
+#content {
+    flex: 1; /* Allows main content to grow and fill available space */
+    padding: var(--space-xl) var(--space-lg); /* Generous padding for main content */
     position: relative;
-    /* Permite posicionar elementos hijos de manera relativa a este elemento */
-    z-index: 1;
-    /* Asegura que el contenido esté por encima del canvas */
-    max-width: 800px;
-    /* Establece un ancho máximo para el contenido */
+    z-index: 1; /* Ensures content is above canvas */
+    max-width: 1000px; /* Adjusted max-width for content */
     width: 100%;
-    /* Establece el ancho al 100% de su contenedor */
-    margin: 0 auto;
-    /* Centra el contenido horizontalmente */
+    margin: 0 auto; /* Centers main content */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl); /* Space between major sections */
 }
 
 section {
-    margin: 10px 0;
-    /* Añade margen vertical alrededor de las secciones */
-    border-radius: 8px;
-    /* Añade bordes redondeados a las secciones */
+    padding: var(--space-lg);
+    background-color: rgba(34, 34, 34, 0.7); /* Slightly transparent background for sections */
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow for sections */
+    border: 1px solid rgba(120, 250, 211, 0.2); /* Subtle border matching primary color */
+    /* REMOVED: opacity: 0 and animation here. Sections will be visible by default.
+       If you want entrance animations, implement with Intersection Observer in JS. */
 }
 
+section h2, section h3 {
+    color: var(--clr-primary-mint);
+    margin-bottom: var(--space-md);
+    font-size: var(--fs-heading-2); /* Consistent heading sizes */
+    text-align: center;
+}
+
+section p {
+    margin-bottom: var(--space-sm);
+    text-align: justify; /* Justify text for better readability in paragraphs */
+    padding: 0 var(--space-sm); /* Slight horizontal padding for paragraphs */
+}
+
+/* Specific adjustments for headings in the hero section (main profile info) */
+.profile-info h2 {
+    font-size: var(--fs-heading-2);
+    margin-bottom: var(--space-sm);
+    color: var(--clr-text-light); /* Keep 'Hello there' white */
+}
+
+.profile-info h3 {
+    font-size: var(--fs-heading-3);
+    color: var(--clr-primary-mint); /* Highlight the name */
+    margin-bottom: var(--space-sm);
+}
+
+.profile-info p {
+    text-align: center; /* Keep profile info paragraphs centered on mobile */
+}
+
+/* --- General Link Styles --- */
 a {
     text-decoration: none;
-    /* Elimina el subrayado de los enlaces */
     color: inherit;
-    /* Hereda el color del texto del elemento padre */
 }
 
-#contactLink {
-    text-decoration: none;
-    /* Elimina el subrayado del enlace de contacto */
-    color: var(--primary-color);
-    /* Aplica el color primario al enlace de contacto */
+/* --- Call-to-action Button (Open Modal Button) --- */
+.open-modal-btn {
+    background: none;
+    border: 2px solid var(--clr-primary-mint);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--clr-primary-mint);
     font-weight: bold;
-    /* Establece el texto en negrita */
-    padding: 0.75rem 1rem;
-    /* Añade relleno (12px arriba/abajo, 16px izquierda/derecha si 1rem = 16px) */
-    border: 2px solid var(--primary-color);
-    /* Añade un borde alrededor del enlace de contacto */
-    border-radius: 5px;
-    /* Añade bordes redondeados al enlace de contacto */
-    transition: all 0.3s ease;
-    /* Añade una transición suave para todas las propiedades durante 0.3 segundos */
+    font-size: var(--fs-base);
+    cursor: pointer;
+    transition: var(--transition-ease);
+    display: inline-block; /* Allows padding and transitions to apply correctly */
+    margin-top: var(--space-md);
+    white-space: nowrap; /* Prevent text from wrapping inside the button */
 }
 
-#contactLink:hover {
-    background-color: var(--primary-color);
-    /* Cambia el color de fondo al color primario en hover */
-    color: #54c4f8;
-    /* Cambia el color del texto a un tono azul claro en hover */
+.open-modal-btn:hover,
+.open-modal-btn:focus {
+    background-color: var(--clr-primary-mint);
+    color: var(--clr-bg-dark); /* Changed to black for better contrast */
+    box-shadow: 0 0 15px var(--clr-primary-mint); /* Glowing effect */
 }
 
-#contactLink:visited {
-    color: lightgreen;
-    /* Cambia el color del enlace visitado a verde claro */
+.open-modal-btn .mint-green { /* Target the span inside the button */
+    color: inherit; /* Inherit color from parent button */
+    font-weight: inherit;
 }
 
-#contactLink:active {
-    background-color: darkgreen;
-    /* Cambia el color de fondo a verde oscuro cuando el enlace está activo (siendo clickeado) */
-    color: white;
-    /* Cambia el color del texto a blanco cuando el enlace está activo */
+/* --- Footer Link Styling --- */
+.site-footer .custom-link {
+    color: var(--clr-primary-mint);
+    font-weight: bold;
+    transition: var(--transition-ease);
 }
 
+.site-footer .custom-link:hover,
+.site-footer .custom-link:focus {
+    color: var(--clr-primary-blue);
+    text-decoration: underline;
+}
+
+/* --- Modal Styles --- */
 .modal {
-    display: none;
-    /* Oculta el modal por defecto */
+    display: none; /* Initially hidden, controlled by JS */
     position: fixed;
-    /* Posiciona el modal de manera fija en la ventana del navegador */
-    background-color: rgba(50, 50, 50, 0.8);
-    /* Aplica un fondo semitransparente oscuro */
-    top: 0;
-    /* Lo coloca en la parte superior de la ventana */
-    left: 0;
-    /* Lo coloca en el lado izquierdo de la ventana */
-    width: 100%;
-    /* Establece el ancho al 100% de la ventana */
-    height: 100%;
-    /* Establece la altura al 100% de la ventana */
+    inset: 0; /* Shorthand for top, right, bottom, left: 0; */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker, slightly more opaque overlay */
+    justify-content: center; /* Centering for flexbox */
+    align-items: center; /* Centering for flexbox */
+    z-index: 1000; /* Ensure modal is on top of everything */
+    opacity: 0; /* Start hidden for animation */
+    pointer-events: none; /* Allow clicks through when hidden */
+    transition: opacity 0.3s ease-out; /* Smooth transition for showing/hiding */
+}
+
+.modal.is-visible { /* Class added by JS when modal is open */
+    display: flex; /* Show with flexbox when visible */
+    opacity: 1;
+    pointer-events: auto; /* Allow interaction when visible */
 }
 
 .modal-content {
-    background-color: #0c0c0c;
-    /* Aplica un color de fondo casi negro al contenido del modal */
-    margin: 5% auto;
-    /* Centra el contenido del modal vertical y horizontalmente */
-    padding: 20px;
-    /* Añade relleno alrededor del contenido del modal */
+    background-color: var(--clr-bg-light-dark);
+    margin: var(--space-xl); /* Margin from viewport edges */
+    padding: var(--space-xl);
     width: 90%;
-    /* Establece el ancho del contenido del modal al 50% de su contenedor */
-    color: var(--primary-color);
-    /* Aplica el color primario al texto dentro del modal */
-    border-radius: 10px;
-    /* Añade bordes redondeados al contenido del modal */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Añade una sombra sutil al contenido del modal */
+    max-width: 500px; /* Set a reasonable max-width for modal content */
+    color: var(--clr-primary-mint);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* More pronounced shadow */
+    border: 1px solid var(--clr-primary-mint); /* Border to match theme */
+    transform: translateY(-20px); /* Start slightly above for animation */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0; /* Start hidden for content animation */
 }
 
-input,
-textarea,
-button {
+.modal.is-visible .modal-content {
+    transform: translateY(0); /* Slide into place */
+    opacity: 1;
+}
+
+.modal-content h3 {
+    font-size: var(--fs-heading-3);
+    margin-bottom: var(--space-lg);
+    color: var(--clr-text-light); /* Make modal title white */
+}
+
+/* --- Form Elements within Modal --- */
+.modal-content label {
     display: block;
-    /* Hace que los elementos se muestren como bloques, ocupando todo el ancho disponible */
-    width: 90%;
-    /* Establece el ancho al 90% de su contenedor */
-    max-width: 400px;
-    /* Establece un ancho máximo de 400px */
-    margin: 1rem auto;
-    /* Añade margen vertical (16px si 1rem = 16px) y centra horizontalmente */
-    padding: 0.75rem;
-    /* Añade relleno (12px si 1rem = 16px) */
-    font-size: 1rem;
-    /* Establece el tamaño de la fuente */
-    border: 1px solid #ccc;
-    /* Añade un borde de 1px de color gris claro */
-    border-radius: 5px;
-    /* Añade bordes redondeados */
+    text-align: left; /* Align labels to the left */
+    margin-bottom: var(--space-sm);
+    font-weight: bold;
+    color: var(--clr-primary-mint);
 }
 
-button:hover {
-    background-color: #4503fa;
-    /* Cambia el color de fondo del botón en hover a un tono púrpura */
-}
-
-button[type="close"] {
-    color: black;
-    /* Establece el color del texto del botón de cerrar en negro */
-}
-
-button[type="submit"] {
-    color: black;
-    /* Establece el color del texto del botón de enviar en negro */
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        /* Establece la opacidad inicial en 0 */
-    }
-
-    to {
-        opacity: 1;
-        /* Establece la opacidad final en 1 */
-    }
-}
-
-.modal {
-    animation: fadeIn 0.5s ease;
-    /* Aplica la animación fadeIn al modal durante 0.5 segundos con una curva de aceleración suave */
-}
-
-.img {
-    background-color: transparent;
-    /* Establece el fondo de las imágenes como transparente */
+input[type="text"],
+input[type="email"],
+textarea {
     display: block;
-    /* Hace que las imágenes se muestren como bloques */
+    width: 100%; /* Take full width of modal content */
+    padding: var(--space-sm);
+    font-size: var(--fs-base);
+    border: 1px solid var(--clr-border-light);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-md); /* Space below each input */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent input fields */
+    color: var(--clr-text-light);
 }
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--clr-primary-mint);
+    box-shadow: 0 0 0 3px rgba(120, 250, 211, 0.3); /* Focus ring effect */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: var(--space-md); /* Space between buttons */
+    margin-top: var(--space-lg);
+}
+
+.modal-actions button {
+    display: inline-block; /* Allow buttons to sit side-by-side */
+    width: auto; /* Auto width based on content */
+    max-width: none; /* Override max-width from general button rule */
+    margin: 0; /* Reset margins */
+    padding: var(--space-sm) var(--space-lg);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-ease);
+    border-radius: var(--radius-sm); /* Ensure consistent button border-radius */
+}
+
+.modal-actions .close-btn {
+    background-color: #dc3545; /* Red for close button */
+    color: var(--clr-text-light);
+    border: none;
+}
+
+.modal-actions .close-btn:hover,
+.modal-actions .close-btn:focus {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.modal-actions .submit-btn {
+    background-color: var(--clr-primary-mint);
+    color: var(--clr-bg-dark); /* Black text for submit button */
+    border: none;
+}
+
+.modal-actions .submit-btn:hover,
+.modal-actions .submit-btn:focus {
+    background-color: #8be0b2; /* Lighter mint green on hover */
+    transform: translateY(-1px);
+}
+
+/* --- Image Styles --- */
 img {
     max-width: 100%;
-    /* Asegura que el ancho de la imagen no exceda su contenedor */
     height: auto;
-    /* Mantiene la proporción de la imagen */
     display: block;
-    /* Evita espacios extra debajo de la imagen */
-    margin: auto;
-    /* Centra la imagen horizontalmente */
+    margin: var(--space-md) auto; /* Add some vertical margin, center horizontally */
+    border-radius: var(--radius-sm); /* Slightly rounded corners for all images */
 }
 
-.mint-green {
-    color: #98ff98;
-    /* Establece el color del texto en verde menta */
-    font-weight: bold;
-    /* Establece el texto en negrita */
-    text-decoration: none;
-    /* Elimina el subrayado */
+.profile-picture {
+    border-radius: 50%; /* Make profile picture perfectly round */
+    border: 3px solid var(--clr-primary-mint); /* A border around the profile pic */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    aspect-ratio: 1 / 1; /* Keep it square */
+    width: 200px; /* Fixed width for profile picture */
+    height: 200px; /* Fixed height for profile picture */
 }
 
-.container {
+.skill-gif, .contact-gif, .coding-gif-section img {
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin: var(--space-md) auto; /* Center them and add vertical spacing */
+}
+
+/* --- Specific Section Layouts --- */
+.hero-section {
     display: flex;
-    justify-content: center;
-    /* Centrado horizontal */
+    flex-direction: column; /* Default to column on small screens */
     align-items: center;
-    /* Centrado vertical */
+    gap: var(--space-lg);
+    padding: var(--space-xl);
 }
 
-.image-section {
+.skills-content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* Default to column on small screens */
     align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-}
-.main-profile-section {
-    display: flex; /* Make this a flex container */
-    flex-direction: column; /* Stack items vertically by default for mobile */
-    align-items: center; /* Center items horizontally when stacked */
-    gap: 20px; /* Space between the stacked items */
-    width: 100%; /* Take full width within its parent */
-    max-width: 800px; /* Adhere to main's max-width, or adjust if needed */
-    margin-bottom: 30px; /* Add some space below this section */
+    gap: var(--space-lg);
+    text-align: center;
 }
 
-.profile-info {
-    text-align: center; /* Center text within this block on mobile */
+.skills-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for skills */
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    padding: 0;
 }
 
-/* Media query for larger screens (e.g., tablets and desktops) */
-@media (min-width: 769px) { /* This breakpoint aligns with your existing media query */
-    .main-profile-section {
-        flex-direction: row; /* Arrange items horizontally on larger screens */
-        justify-content: center; /* Center the whole section */
-        align-items: flex-start; /* Align items to the top of the flex container */
-        text-align: center; /* Align text within this section to the left */
+.skills-list li {
+    background-color: rgba(120, 250, 211, 0.1); /* Subtle background for skill items */
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.skill-images {
+    display: flex;
+    flex-direction: column; /* Default to column */
+    gap: var(--space-md);
+    width: 100%;
+    align-items: center;
+}
+
+/* --- Responsive Design --- */
+@media (min-width: 768px) {
+    .header-content {
+        flex-direction: row; /* Header items side-by-side on larger screens */
+        justify-content: space-between;
     }
 
-    .main-profile-section img {
-        flex-shrink: 0; /* Prevent the image from shrinking too much */
-        margin-right: 40px; /* Add space to the right of the image */
-        margin-left: 40px; /* Add space to the left of the image */
-        width: 200px; /* Keep original width if desired, or adjust */
-        height: auto; /* Maintain aspect ratio */
+    .main-nav-list {
+        justify-content: flex-end; /* Align nav items to the right */
+    }
+
+    .hero-section {
+        flex-direction: row; /* Profile section side-by-side */
+        text-align: left;
+        align-items: flex-start; /* Align image and text to the top */
+    }
+
+    .profile-picture {
+        margin-right: var(--space-xl); /* Space between image and text */
+        margin-left: 0; /* Reset margin */
+        flex-shrink: 0; /* Prevent shrinking */
     }
 
     .profile-info {
-        flex-grow: 1; /* Allow the info block to take available space */
-        text-align: center; /* Ensure text is left-aligned on larger screens */
+        text-align: left; /* Align profile info text to the left */
+    }
+
+    .profile-info p {
+        text-align: left; /* Ensure paragraphs are left-aligned */
+    }
+
+    .skills-content {
+        flex-direction: row; /* Skills content side-by-side */
+        justify-content: space-around;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .skills-list {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for skills on larger screens */
+        flex-grow: 1;
+    }
+
+    .skill-images {
+        flex-direction: row; /* Skill images side-by-side */
+        flex-wrap: wrap; /* Allow wrapping if space is constrained */
+        justify-content: center;
     }
 }
 
-/* Adjustments for existing elements that might conflict or need centering */
-#content h2, #content p {
-    text-align: center; /* Ensure default centering for content paragraphs */
+@media (min-width: 1024px) {
+    .site-header,
+    .site-footer {
+        padding: var(--space-md) var(--space-xl);
+    }
+
+    #content {
+        padding: var(--space-xl) var(--space-xxl);
+    }
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Optional: Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
 }
