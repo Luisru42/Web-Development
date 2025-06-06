@@ -1,29 +1,46 @@
 /* --- CSS Variables --- */
 :root {
     /* Primary brand colors */
-    --clr-primary-mint: rgb(120, 250, 211); /* Used for accents, links, and interactive elements */
-    --clr-primary-blue: #54c4f8; /* A complementary blue for interactive states */
+    --clr-primary-mint: rgb(120, 250, 211);
+    /* Used for accents, links, and interactive elements */
+    --clr-primary-blue: #54c4f8;
+    /* A complementary blue for interactive states */
 
     /* Grayscale/neutral colors */
-    --clr-bg-dark: black; /* Main background color */
-    --clr-bg-light-dark: #0c0c0c; /* For modal content background */
-    --clr-text-light: white; /* Main text color */
-    --clr-secondary-dark: #222; /* For header and footer backgrounds */
-    --clr-border-light: #ccc; /* Light gray for borders */
+    --clr-bg-dark: black;
+    /* Main background color */
+    --clr-bg-light-dark: #0c0c0c;
+    /* For modal content background */
+    --clr-text-light: white;
+    /* Main text color */
+    --clr-secondary-dark: #222;
+    /* For header and footer backgrounds */
+    --clr-border-light: #ccc;
+    /* Light gray for borders */
 
     /* Font sizes */
-    --fs-base: 1.125rem; /* Base font size (18px) */
-    --fs-large: 1.25rem; /* Larger font size for specific elements (20px) */
-    --fs-heading-1: 3rem; /* H1 size */
-    --fs-heading-2: 2.25rem; /* H2 size */
-    --fs-heading-3: 1.75rem; /* H3 size */
+    --fs-base: 1.125rem;
+    /* Base font size (18px) */
+    --fs-large: 1.25rem;
+    /* Larger font size for specific elements (20px) */
+    --fs-heading-1: 3rem;
+    /* H1 size */
+    --fs-heading-2: 2.25rem;
+    /* H2 size */
+    --fs-heading-3: 1.75rem;
+    /* H3 size */
 
     /* Spacing */
-    --space-sm: 0.75rem; /* 12px */
-    --space-md: 1rem;    /* 16px */
-    --space-lg: 1.5rem;  /* 24px */
-    --space-xl: 2rem;    /* 32px */
-    --space-xxl: 3rem;   /* 48px; Added for larger padding */
+    --space-sm: 0.75rem;
+    /* 12px */
+    --space-md: 1rem;
+    /* 16px */
+    --space-lg: 1.5rem;
+    /* 24px */
+    --space-xl: 2rem;
+    /* 32px */
+    --space-xxl: 3rem;
+    /* 48px; Added for larger padding */
 
     /* Border radius */
     --radius-sm: 5px;
@@ -35,29 +52,40 @@
 }
 
 /* --- Universal Box Sizing & Reset --- */
-*, *::before, *::after {
-    box-sizing: border-box; /* Includes padding and border in element's total width/height */
-    margin: 0; /* Reset default margins */
-    padding: 0; /* Reset default paddings */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Includes padding and border in element's total width/height */
+    margin: 0;
+    /* Reset default margins */
+    padding: 0;
+    /* Reset default paddings */
 }
 
 /* --- Body Styles --- */
 body {
     /* Link 'Montserrat' from Google Fonts in your HTML <head>: */
     /* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> */
-    font-family: 'Montserrat', sans-serif; /* Using a more modern, readable font */
+    font-family: 'Montserrat', sans-serif;
+    /* Using a more modern, readable font */
     background: var(--clr-bg-dark);
     color: var(--clr-text-light);
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers main content horizontally */
+    align-items: center;
+    /* Centers main content horizontally */
     min-height: 100vh;
     font-size: var(--fs-base);
     line-height: 1.6;
-    overflow-x: hidden; /* Prevents horizontal scrollbar */
-    text-align: center; /* Default text alignment for direct children of body */
-    -webkit-font-smoothing: antialiased; /* Smoother font rendering on macOS/iOS */
-    -moz-osx-font-smoothing: grayscale; /* Smoother font rendering on macOS/iOS */
+    overflow-x: hidden;
+    /* Prevents horizontal scrollbar */
+    text-align: center;
+    /* Default text alignment for direct children of body */
+    -webkit-font-smoothing: antialiased;
+    /* Smoother font rendering on macOS/iOS */
+    -moz-osx-font-smoothing: grayscale;
+    /* Smoother font rendering on macOS/iOS */
 }
 
 /* --- Canvas Background --- */
@@ -67,44 +95,56 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Puts it behind all other content */
-    display: block; /* Ensure it behaves as a block element */
+    z-index: -1;
+    /* Puts it behind all other content */
+    display: block;
+    /* Ensure it behaves as a block element */
 }
 
 /* --- Header & Footer Styles --- */
 .site-header,
 .site-footer {
     background: var(--clr-secondary-dark);
-    padding: var(--space-md) var(--space-lg); /* Consistent padding */
+    padding: var(--space-md) var(--space-lg);
+    /* Consistent padding */
     position: relative;
-    z-index: 10; /* Ensures header/footer are above other content */
+    z-index: 10;
+    /* Ensures header/footer are above other content */
     width: 100%;
-    max-width: 1200px; /* Increased max-width for a wider layout if desired */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    max-width: 1200px;
+    /* Increased max-width for a wider layout if desired */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    /* Subtle shadow for depth */
 }
 
 .site-header {
-    margin-bottom: var(--space-xl); /* Space below the header */
+    margin-bottom: var(--space-xl);
+    /* Space below the header */
 }
 
 .header-content {
     display: flex;
-    flex-direction: column; /* Stacks on small screens */
+    flex-direction: column;
+    /* Stacks on small screens */
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    max-width: 900px; /* Constrain header content width */
-    margin: 0 auto; /* Center header content */
+    max-width: 900px;
+    /* Constrain header content width */
+    margin: 0 auto;
+    /* Center header content */
 }
 
 .site-header h1 {
-    font-size: var(--fs-heading-2); /* Adjusted heading size */
+    font-size: var(--fs-heading-2);
+    /* Adjusted heading size */
     color: var(--clr-primary-mint);
     margin-bottom: var(--space-sm);
 }
 
 .site-footer {
-    margin-top: var(--space-xl); /* Space above the footer */
+    margin-top: var(--space-xl);
+    /* Space above the footer */
 }
 
 .site-footer p {
@@ -115,87 +155,112 @@ body {
 .main-nav-list {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    flex-wrap: wrap;
+    /* Allow items to wrap on smaller screens */
     justify-content: center;
-    gap: var(--space-lg); /* Space between nav items */
+    gap: var(--space-lg);
+    /* Space between nav items */
 }
 
 .main-nav-list li a {
     text-decoration: none;
     color: var(--clr-text-light);
-    padding: var(--space-sm) var(--space-md); /* Add padding for larger click area */
+    padding: var(--space-sm) var(--space-md);
+    /* Add padding for larger click area */
     transition: var(--transition-ease);
     border-radius: var(--radius-sm);
     font-size: var(--fs-base);
-    font-weight: 500; /* Slightly bolder */
+    font-weight: 500;
+    /* Slightly bolder */
 }
 
 .main-nav-list li a:hover,
-.main-nav-list li a:focus { /* Add focus state for accessibility */
+.main-nav-list li a:focus {
+    /* Add focus state for accessibility */
     color: var(--clr-primary-mint);
-    transform: translateY(-2px); /* Subtle lift effect */
+    transform: translateY(-2px);
+    /* Subtle lift effect */
 }
 
 /* --- Main Content & Section Styles --- */
 #content {
-    flex: 1; /* Allows main content to grow and fill available space */
-    padding: var(--space-xl) var(--space-lg); /* Generous padding for main content */
+    flex: 1;
+    /* Allows main content to grow and fill available space */
+    padding: var(--space-xl) var(--space-lg);
+    /* Generous padding for main content */
     position: relative;
-    z-index: 1; /* Ensures content is above canvas */
-    max-width: 1000px; /* Adjusted max-width for content */
+    z-index: 1;
+    /* Ensures content is above canvas */
+    max-width: 1000px;
+    /* Adjusted max-width for content */
     width: 100%;
-    margin: 0 auto; /* Centers main content */
+    margin: 0 auto;
+    /* Centers main content */
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl); /* Space between major sections */
+    gap: var(--space-xl);
+    /* Space between major sections */
 }
 
 section {
     padding: var(--space-lg);
-    background-color: rgba(34, 34, 34, 0.7); /* Slightly transparent background for sections */
+    background-color: rgba(34, 34, 34, 0.7);
+    /* Slightly transparent background for sections */
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow for sections */
-    border: 1px solid rgba(120, 250, 211, 0.2); /* Subtle border matching primary color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow for sections */
+    border: 1px solid rgba(120, 250, 211, 0.2);
+    /* Subtle border matching primary color */
     /* For JS-driven animation: */
     opacity: 0;
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+    transform: translateY(20px);
+    /* Start slightly below */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Smooth transition */
 }
 
-section.section-visible { /* Class added by JS for animation */
+section.section-visible {
+    /* Class added by JS for animation */
     opacity: 1;
     transform: translateY(0);
 }
 
 
-section h2, section h3 {
+section h2,
+section h3 {
     color: var(--clr-primary-mint);
     margin-bottom: var(--space-md);
-    font-size: var(--fs-heading-2); /* Consistent heading sizes */
+    font-size: var(--fs-heading-2);
+    /* Consistent heading sizes */
     text-align: center;
 }
 
 section p {
     margin-bottom: var(--space-sm);
-    text-align: justify; /* Justify text for better readability in paragraphs */
-    padding: 0 var(--space-sm); /* Slight horizontal padding for paragraphs */
+    text-align: justify;
+    /* Justify text for better readability in paragraphs */
+    padding: 0 var(--space-sm);
+    /* Slight horizontal padding for paragraphs */
 }
 
 /* Specific adjustments for headings in the hero section (main profile info) */
 .profile-info h2 {
     font-size: var(--fs-heading-2);
     margin-bottom: var(--space-sm);
-    color: var(--clr-text-light); /* Keep 'Hello there' white */
+    color: var(--clr-text-light);
+    /* Keep 'Hello there' white */
 }
 
 .profile-info h3 {
     font-size: var(--fs-heading-3);
-    color: var(--clr-primary-mint); /* Highlight the name */
+    color: var(--clr-primary-mint);
+    /* Highlight the name */
     margin-bottom: var(--space-sm);
 }
 
 .profile-info p {
-    text-align: center; /* Keep profile info paragraphs centered on mobile */
+    text-align: center;
+    /* Keep profile info paragraphs centered on mobile */
 }
 
 /* --- General Link Styles --- */
@@ -215,20 +280,26 @@ a {
     font-size: var(--fs-base);
     cursor: pointer;
     transition: var(--transition-ease);
-    display: inline-block; /* Allows padding and transitions to apply correctly */
+    display: inline-block;
+    /* Allows padding and transitions to apply correctly */
     margin-top: var(--space-md);
-    white-space: nowrap; /* Prevent text from wrapping inside the button */
+    white-space: nowrap;
+    /* Prevent text from wrapping inside the button */
 }
 
 .open-modal-btn:hover,
 .open-modal-btn:focus {
     background-color: var(--clr-primary-mint);
-    color: var(--clr-bg-dark); /* Changed to black for better contrast */
-    box-shadow: 0 0 15px var(--clr-primary-mint); /* Glowing effect */
+    color: var(--clr-bg-dark);
+    /* Changed to black for better contrast */
+    box-shadow: 0 0 15px var(--clr-primary-mint);
+    /* Glowing effect */
 }
 
-.open-modal-btn .mint-green { /* Target the span inside the button */
-    color: inherit; /* Inherit color from parent button */
+.open-modal-btn .mint-green {
+    /* Target the span inside the button */
+    color: inherit;
+    /* Inherit color from parent button */
     font-weight: inherit;
 }
 
@@ -247,54 +318,75 @@ a {
 
 /* --- Modal Styles --- */
 .modal {
-    display: none; /* Initially hidden, controlled by JS */
+    display: none;
+    /* Initially hidden, controlled by JS */
     position: fixed;
-    inset: 0; /* Shorthand for top, right, bottom, left: 0; */
-    background-color: rgba(0, 0, 0, 0.7); /* Darker, slightly more opaque overlay */
-    justify-content: center; /* Centering for flexbox */
-    align-items: center; /* Centering for flexbox */
-    z-index: 1000; /* Ensure modal is on top of everything */
-    opacity: 0; /* Start hidden for animation */
-    pointer-events: none; /* Allow clicks through when hidden */
-    transition: opacity 0.3s ease-out; /* Smooth transition for showing/hiding */
+    inset: 0;
+    /* Shorthand for top, right, bottom, left: 0; */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Darker, slightly more opaque overlay */
+    justify-content: center;
+    /* Centering for flexbox */
+    align-items: center;
+    /* Centering for flexbox */
+    z-index: 1000;
+    /* Ensure modal is on top of everything */
+    opacity: 0;
+    /* Start hidden for animation */
+    pointer-events: none;
+    /* Allow clicks through when hidden */
+    transition: opacity 0.3s ease-out;
+    /* Smooth transition for showing/hiding */
 }
 
-.modal.is-visible { /* Class added by JS when modal is open */
-    display: flex; /* Show with flexbox when visible */
+.modal.is-visible {
+    /* Class added by JS when modal is open */
+    display: flex;
+    /* Show with flexbox when visible */
     opacity: 1;
-    pointer-events: auto; /* Allow interaction when visible */
+    pointer-events: auto;
+    /* Allow interaction when visible */
 }
 
 .modal-content {
     background-color: var(--clr-bg-light-dark);
-    margin: var(--space-xl); /* Margin from viewport edges */
+    margin: var(--space-xl);
+    /* Margin from viewport edges */
     padding: var(--space-xl);
     width: 90%;
-    max-width: 500px; /* Set a reasonable max-width for modal content */
+    max-width: 500px;
+    /* Set a reasonable max-width for modal content */
     color: var(--clr-primary-mint);
     border-radius: var(--radius-lg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* More pronounced shadow */
-    border: 1px solid var(--clr-primary-mint); /* Border to match theme */
-    transform: translateY(-20px); /* Start slightly above for animation */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    /* More pronounced shadow */
+    border: 1px solid var(--clr-primary-mint);
+    /* Border to match theme */
+    transform: translateY(-20px);
+    /* Start slightly above for animation */
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    opacity: 0; /* Start hidden for content animation */
+    opacity: 0;
+    /* Start hidden for content animation */
 }
 
 .modal.is-visible .modal-content {
-    transform: translateY(0); /* Slide into place */
+    transform: translateY(0);
+    /* Slide into place */
     opacity: 1;
 }
 
 .modal-content h3 {
     font-size: var(--fs-heading-3);
     margin-bottom: var(--space-lg);
-    color: var(--clr-text-light); /* Make modal title white */
+    color: var(--clr-text-light);
+    /* Make modal title white */
 }
 
 /* --- Form Elements within Modal --- */
 .modal-content label {
     display: block;
-    text-align: left; /* Align labels to the left */
+    text-align: left;
+    /* Align labels to the left */
     margin-bottom: var(--space-sm);
     font-weight: bold;
     color: var(--clr-primary-mint);
@@ -304,13 +396,16 @@ input[type="text"],
 input[type="email"],
 textarea {
     display: block;
-    width: 100%; /* Take full width of modal content */
+    width: 100%;
+    /* Take full width of modal content */
     padding: var(--space-sm);
     font-size: var(--fs-base);
     border: 1px solid var(--clr-border-light);
     border-radius: var(--radius-sm);
-    margin-bottom: var(--space-md); /* Space below each input */
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent input fields */
+    margin-bottom: var(--space-md);
+    /* Space below each input */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Slightly transparent input fields */
     color: var(--clr-text-light);
 }
 
@@ -319,35 +414,45 @@ input[type="email"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--clr-primary-mint);
-    box-shadow: 0 0 0 3px rgba(120, 250, 211, 0.3); /* Focus ring effect */
+    box-shadow: 0 0 0 3px rgba(120, 250, 211, 0.3);
+    /* Focus ring effect */
 }
 
 textarea {
-    resize: vertical; /* Allow vertical resizing only */
+    resize: vertical;
+    /* Allow vertical resizing only */
     min-height: 100px;
 }
 
 .modal-actions {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
-    gap: var(--space-md); /* Space between buttons */
+    justify-content: flex-end;
+    /* Align buttons to the right */
+    gap: var(--space-md);
+    /* Space between buttons */
     margin-top: var(--space-lg);
 }
 
 .modal-actions button {
-    display: inline-block; /* Allow buttons to sit side-by-side */
-    width: auto; /* Auto width based on content */
-    max-width: none; /* Override max-width from general button rule */
-    margin: 0; /* Reset margins */
+    display: inline-block;
+    /* Allow buttons to sit side-by-side */
+    width: auto;
+    /* Auto width based on content */
+    max-width: none;
+    /* Override max-width from general button rule */
+    margin: 0;
+    /* Reset margins */
     padding: var(--space-sm) var(--space-lg);
     font-weight: bold;
     cursor: pointer;
     transition: var(--transition-ease);
-    border-radius: var(--radius-sm); /* Ensure consistent button border-radius */
+    border-radius: var(--radius-sm);
+    /* Ensure consistent button border-radius */
 }
 
 .modal-actions .close-btn {
-    background-color: #dc3545; /* Red for close button */
+    background-color: #dc3545;
+    /* Red for close button */
     color: var(--clr-text-light);
     border: none;
 }
@@ -360,13 +465,15 @@ textarea {
 
 .modal-actions .submit-btn {
     background-color: var(--clr-primary-mint);
-    color: var(--clr-bg-dark); /* Black text for submit button */
+    color: var(--clr-bg-dark);
+    /* Black text for submit button */
     border: none;
 }
 
 .modal-actions .submit-btn:hover,
 .modal-actions .submit-btn:focus {
-    background-color: #8be0b2; /* Lighter mint green on hover */
+    background-color: #8be0b2;
+    /* Lighter mint green on hover */
     transform: translateY(-1px);
 }
 
@@ -375,23 +482,34 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: var(--space-md) auto; /* Add some vertical margin, center horizontally */
-    border-radius: var(--radius-sm); /* Slightly rounded corners for all images */
+    margin: var(--space-md) auto;
+    /* Add some vertical margin, center horizontally */
+    border-radius: var(--radius-sm);
+    /* Slightly rounded corners for all images */
 }
 
 .profile-picture {
-    border-radius: 50%; /* Make profile picture perfectly round */
-    border: 3px solid var(--clr-primary-mint); /* A border around the profile pic */
-    object-fit: cover; /* Ensure image covers the area without distortion */
-    aspect-ratio: 1 / 1; /* Keep it square */
-    width: 200px; /* Fixed width for profile picture */
-    height: 200px; /* Fixed height for profile picture */
+    border-radius: 50%;
+    /* Make profile picture perfectly round */
+    border: 3px solid var(--clr-primary-mint);
+    /* A border around the profile pic */
+    object-fit: cover;
+    /* Ensure image covers the area without distortion */
+    aspect-ratio: 1 / 1;
+    /* Keep it square */
+    width: 200px;
+    /* Fixed width for profile picture */
+    height: 200px;
+    /* Fixed height for profile picture */
 }
 
-.skill-gif, .contact-gif, .coding-gif-section img {
+.skill-gif,
+.contact-gif,
+.coding-gif-section img {
     border-radius: var(--radius-md);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    margin: var(--space-md) auto; /* Center them and add vertical spacing */
+    margin: var(--space-md) auto;
+    /* Center them and add vertical spacing */
 }
 
 /* --- Specific Section Layouts --- */
@@ -399,16 +517,20 @@ img {
 /* DEFAULT HERO SECTION STYLES (ALWAYS VISIBLE) */
 .hero-section {
     display: flex;
-    flex-direction: column; /* Default to column on small screens */
+    flex-direction: column;
+    /* Default to column on small screens */
     align-items: center;
     gap: var(--space-lg);
     padding: var(--space-xl);
     /* *** CRITICAL FIX FOR VISIBILITY *** */
-    opacity: 1 !important; /* Ensure it's fully visible from the start */
-    transform: translateY(0) !important; /* Ensure it's in its correct starting position */
+    opacity: 1 !important;
+    /* Ensure it's fully visible from the start */
+    transform: translateY(0) !important;
+    /* Ensure it's in its correct starting position */
 }
 
-.coding-gif-section { /* Added this for consistency with other image sections */
+.coding-gif-section {
+    /* Added this for consistency with other image sections */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -418,7 +540,8 @@ img {
 
 .skills-content {
     display: flex;
-    flex-direction: column; /* Default to column on small screens */
+    flex-direction: column;
+    /* Default to column on small screens */
     align-items: center;
     gap: var(--space-lg);
     text-align: center;
@@ -427,14 +550,16 @@ img {
 .skills-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for skills */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Responsive grid for skills */
     gap: var(--space-sm);
     margin-bottom: var(--space-lg);
     padding: 0;
 }
 
 .skills-list li {
-    background-color: rgba(120, 250, 211, 0.1); /* Subtle background for skill items */
+    background-color: rgba(120, 250, 211, 0.1);
+    /* Subtle background for skill items */
     padding: var(--space-sm);
     border-radius: var(--radius-sm);
     font-weight: 500;
@@ -442,7 +567,8 @@ img {
 
 .skill-images {
     display: flex;
-    flex-direction: column; /* Default to column */
+    flex-direction: column;
+    /* Default to column */
     gap: var(--space-md);
     width: 100%;
     align-items: center;
@@ -450,67 +576,85 @@ img {
 
 /* Fix for Contact Section Centering */
 #contact-section p {
-    text-align: center; /* Override justify or left alignment from parent rules */
-    margin: var(--space-md) auto; /* Center paragraphs and add vertical spacing */
-    max-width: 600px; /* Optional: constrain width for readability on large screens */
+    text-align: center;
+    /* Override justify or left alignment from parent rules */
+    margin: var(--space-md) auto;
+    /* Center paragraphs and add vertical spacing */
+    max-width: 600px;
+    /* Optional: constrain width for readability on large screens */
 }
 
 #contact-section .contact-gif {
-    margin-bottom: var(--space-lg); /* Add some space below the GIF */
+    margin-bottom: var(--space-lg);
+    /* Add some space below the GIF */
 }
 
 /* Ensure the button is centered, even though it's display: inline-block */
 #contact-section .open-modal-btn {
-    display: block; /* Make it a block element to allow auto margins to center */
-    margin: var(--space-lg) auto; /* Center the button horizontally */
+    display: block;
+    /* Make it a block element to allow auto margins to center */
+    margin: var(--space-lg) auto;
+    /* Center the button horizontally */
 }
 
 
 /* --- Responsive Design --- */
 @media (min-width: 768px) {
     .header-content {
-        flex-direction: row; /* Header items side-by-side on larger screens */
+        flex-direction: row;
+        /* Header items side-by-side on larger screens */
         justify-content: space-between;
     }
 
     .main-nav-list {
-        justify-content: flex-end; /* Align nav items to the right */
+        justify-content: flex-end;
+        /* Align nav items to the right */
     }
 
     .hero-section {
-        flex-direction: row; /* Profile section side-by-side */
+        flex-direction: row;
+        /* Profile section side-by-side */
         text-align: left;
-        align-items: flex-start; /* Align image and text to the top */
+        align-items: flex-start;
+        /* Align image and text to the top */
     }
 
     .profile-picture {
-        margin-right: var(--space-xl); /* Space between image and text */
-        margin-left: 0; /* Reset margin */
-        flex-shrink: 0; /* Prevent shrinking */
+        margin-right: var(--space-xl);
+        /* Space between image and text */
+        margin-left: 0;
+        /* Reset margin */
+        flex-shrink: 0;
+        /* Prevent shrinking */
     }
 
     .profile-info {
-        text-align: left; /* Align profile info text to the left */
+        text-align: left;
+        /* Align profile info text to the left */
     }
 
     .profile-info p {
-        text-align: left; /* Ensure paragraphs are left-aligned */
+        text-align: left;
+        /* Ensure paragraphs are left-aligned */
     }
 
     .skills-content {
-        flex-direction: row; /* Skills content side-by-side */
+        flex-direction: row;
+        /* Skills content side-by-side */
         justify-content: space-around;
         align-items: flex-start;
         text-align: left;
     }
 
     .skills-list {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for skills on larger screens */
+        grid-template-columns: repeat(2, 1fr);
+        /* Two columns for skills on larger screens */
         flex-grow: 1;
     }
 
     .skill-images {
-        flex-direction: column; /* Changed from row, let's keep vertical on desktop within the flex container */
+        flex-direction: column;
+        /* Changed from row, let's keep vertical on desktop within the flex container */
         gap: var(--space-md);
         width: 100%;
         align-items: center;
@@ -518,6 +662,7 @@ img {
 }
 
 @media (min-width: 1024px) {
+
     .site-header,
     .site-footer {
         padding: var(--space-md) var(--space-xl);
@@ -530,23 +675,50 @@ img {
     /* Further adjust skill images for larger screens if desired */
     @media (min-width: 1200px) {
         .skill-images {
-            flex-direction: row; /* Re-enable side-by-side for skill images on very large screens */
+            /* Changed to column to always stack vertically, overriding previous 'row' */
+            flex-direction: column;
         }
     }
 }
 
 /* --- Keyframe Animations --- */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideInUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Optional: Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
+}
+
+/* Add this to your styles.css */
+.email-link {
+    color: var(--clr-primary-blue); /* Uses your defined mint color */
+    text-decoration: underline; /* Adds an underline to indicate it's a link */
+    font-weight: bold; /* Makes the text bold */
+    transition: var(--transition-ease); /* Adds a smooth transition for hover effects */
+}
+
+.email-link:hover,
+.email-link:focus {
+    color: #faf600; /* Changes color on hover/focus */
+    text-decoration: double underline; /* Changes to a dotted underline for emphasis */
 }
