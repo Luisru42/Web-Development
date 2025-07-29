@@ -1,143 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luis Ruben Gonzalez Pagan - Full Stack Developer Portfolio</title>
-    <link rel="icon" type="image/png" href="./images/favicon-32x32.png">
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Luis Ruben Gonzalez Pagan | Full Stack Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Luis Ruben Gonzalez Pagan, Full Stack Developer. Skilled in React, Node.js, cloud, and scalable app solutions.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <canvas id="backgroundCanvas" aria-hidden="true" role="presentation"></canvas>
-    <header class="site-header">
-        <div class="header-content">
-            <h1>My Development Journey</h1>
-            <nav aria-label="Main navigation">
-                <ul class="main-nav-list">
-                    <li><a href="#summary" aria-label="Navigate to the Summary section">Summary</a></li>
-                    <li><a href="#education" aria-label="Navigate to the Education section">Education</a></li>
-                    <li><a href="#skills" aria-label="Navigate to the Skills section">Skills</a></li>
-                    <li><a href="#contact-section" aria-label="Navigate to the Contact section">Contact</a></li>
-                </ul>
-            </nav>
+  <canvas id="backgroundCanvas"></canvas>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="./images/Luisru.jpg" alt="Luis Ruben Gonzalez Pagan" class="profile-picture" />
+      <h1>Luis Ruben Gonzalez Pagan</h1>
+      <h2>Full Stack Developer</h2>
+      <p>Shipping robust, scalable web applications with <b>React</b>, <b>Node.js</b>, and cloud infrastructure. Let's build something impactful.</p>
+      <nav>
+        <ul class="main-nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="social-icons">
+        <a href="https://github.com/Luisru42" target="_blank" rel="noopener" aria-label="GitHub"><img src="./images/github.svg" alt="GitHub" /></a>
+        <a href="https://linkedin.com/in/luis-gonzalez-369373358/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="./images/linkedin.svg" alt="LinkedIn" /></a>
+        <a href="mailto:your.email@example.com" aria-label="Email"><img src="./images/gmail.svg" alt="Email" /></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Passionate Full Stack Developer with a mission to solve real business problems using cutting-edge technology. I excel in building scalable, secure, and user-centric applications leveraging JavaScript (React, Node.js), Python, SQL/NoSQL databases, and cloud platforms. Advocating for clean code, agile workflows, and continuous improvement, I deliver robust solutions that drive impact.
+      </p>
+      <ul class="soft-skills-list">
+        <li>Communication</li>
+        <li>Agile / Scrum / Remote Collaboration</li>
+        <li>Critical Thinking</li>
+        <li>Leadership</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>SmartBook</h3>
+          <p class="project-desc">Book inventory and lending app for libraries, enabling real-time inventory tracking & self-serve borrowing.</p>
+          <ul class="tech-tags">
+            <li>React</li><li>Node.js</li><li>MongoDB</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/YOUR_GITHUB/smartbook" target="_blank" rel="noopener">GitHub</a> |
+            <a href="https://smartbook-demo.example.com" target="_blank" rel="noopener">Live Demo</a>
+          </div>
         </div>
-    </header>
-    <main id="content">
-        <section class="hero-section" aria-labelledby="hero-heading">
-            <img src="./images/Luisru.jpg" alt="Profile picture of Luis Ruben Gonzalez Pagan" width="200" height="200"
-                loading="lazy" class="profile-picture" />
-            <div class="profile-info">
-                <h2 id="hero-heading">Greetings!</h2>
-                <p>I'm</p>
-                <h3>Luis Ruben Gonzalez Pagan</h3>
-                <p>Full Stack Web Developer & Software Engineer</p>
-                <p>A dynamic Full Stack Developer skilled in crafting responsive user interfaces and integrating robust
-                    server-side functionalities. Proficient in modern web technologies, I'm passionate about optimizing
-                    performance and delivering scalable, intuitive digital solutions.</p>
-            </div>
-        </section>
-        <section class="coding-gif-section" aria-label="Animated image of a person coding">
-            <img src="./images/me.gif" alt="Animated GIF showing a person coding" width="400" height="200"
-                loading="lazy" />
-        </section>
+        <div class="project-card">
+          <h3>WeatherNow</h3>
+          <p class="project-desc">Real-time weather dashboard with live API feeds, favorite locations, and mobile-friendly design.</p>
+          <ul class="tech-tags">
+            <li>Vue</li><li>Express</li><li>OpenWeatherMap API</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/YOUR_GITHUB/weathernow" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>TaskCollab</h3>
+          <p class="project-desc">Team collaboration platform for project management, featuring Kanban boards, chat, and notifications.</p>
+          <ul class="tech-tags">
+            <li>React</li><li>Node.js</li><li>Socket.io</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/YOUR_GITHUB/taskcollab" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p class="project-desc">This responsive portfolio demonstrates my skills with semantic HTML, modular CSS, background animation, and accessible modal forms.</p>
+          <ul class="tech-tags">
+            <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        <section id="summary" aria-labelledby="summary-heading">
-            <h2 id="summary-heading">About Me</h2>
-            <p>I'm a detail-oriented Full Stack Developer who designs, develops, and deploys scalable web applications.
-                I'm proficient in modern front-end and back-end technologies, creating seamless user experiences across
-                various platforms.</p>
-            <p>I specialize in building responsive full-stack applications using HTML, CSS, JavaScript, Node.js, and
-                various backend languages. My expertise extends to SQL and relational databases, Git for version
-                control, and cloud deployment platforms like AWS and Azure. I always prioritize mobile-first design
-                principles.</p>
-            <p>As an Agile/Scrum practitioner, I'm committed to delivering high-quality, optimized solutions. I excel at
-                troubleshooting and debugging, and I'm dedicated to continuous learning in emerging technologies.</p>
-        </section>
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <span class="skill-title">Languages:</span>
+          <div class="skill-badges">
+            <span>JavaScript</span><span>Python</span><span>Java</span>
+          </div>
+        </div>
+        <div>
+          <span class="skill-title">Frontend:</span>
+          <div class="skill-badges">
+            <span>React</span><span>Vue</span><span>Angular</span><span>HTML5</span><span>CSS3/SASS</span>
+          </div>
+        </div>
+        <div>
+          <span class="skill-title">Backend:</span>
+          <div class="skill-badges">
+            <span>Node.js</span><span>Express</span><span>Python (Flask)</span><span>Java (Spring Boot)</span>
+          </div>
+        </div>
+        <div>
+          <span class="skill-title">Database:</span>
+          <div class="skill-badges">
+            <span>SQL</span><span>NoSQL</span><span>MongoDB</span><span>PostgreSQL</span>
+          </div>
+        </div>
+        <div>
+          <span class="skill-title">Version Control & Tools:</span>
+          <div class="skill-badges">
+            <span>Git</span><span>GitHub</span><span>Docker</span><span>CI/CD</span>
+          </div>
+        </div>
+        <div>
+          <span class="skill-title">Cloud & DevOps:</span>
+          <div class="skill-badges">
+            <span>AWS</span><span>Azure</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="education" aria-labelledby="education-heading">
-            <h2 id="education-heading">Education & Certifications</h2>
-            <ul class="education-list">
-                <li>B.A. in Information Systems [In Progress] - CUS</li>
-                <li>Full Stack Developer Program</li>
-                <li>Certified Java Programmer</li>
-                <li>Certified Python Programmer</li>
-                <li>Data Analytics Specialization</li>
-                <li>Project Management Principles</li>
-                <li>Business Productivity Training</li>
-            </ul>
-        </section>
+    <section id="education">
+      <h2>Education & Certifications</h2>
+      <ul class="edu-timeline">
+        <li>
+          <span class="edu-title">B.A. in Information Systems</span>
+          <span class="edu-info">CUS – In Progress</span>
+        </li>
+        <li>
+          <span class="edu-title">Full Stack Developer Program</span>
+        </li>
+        <li>
+          <span class="edu-title">Certified Java Programmer</span>
+        </li>
+        <li>
+          <span class="edu-title">Certified Python Programmer</span>
+        </li>
+        <li>
+          <span class="edu-title">Data Analytics Specialization</span>
+        </li>
+        <li>
+          <span class="edu-title">Project Management Principles</span>
+        </li>
+        <li>
+          <span class="edu-title">Business Productivity Training</span>
+        </li>
+      </ul>
+    </section>
 
-        <section id="skills" aria-labelledby="skills-heading">
-            <h2 id="skills-heading">Technical Skills</h2>
-            <div class="skills-content">
-                <img src="./images/morning.gif" alt="Animated GIF showing a person working on a computer in the morning"
-                    width="300" height="200" loading="lazy" class="skill-gif" />
-                <ul class="skills-list">
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Front-end Frameworks (e.g., React, Vue, Angular)</li>
-                    <li>Back-end Programming (e.g., Node.js, Python, Java)</li>
-                    <li>Database Management (SQL, NoSQL)</li>
-                    <li>Version Control (Git, GitHub)</li>
-                    <li>API Development & Integration</li>
-                    <li>Deployment & DevOps Practices</li>
-                </ul>
-                <div class="skill-images">
-                    <img src="./images/python.gif" alt="Animated GIF related to Python programming" width="300"
-                        height="200" loading="lazy" class="skill-gif" />
-                    <img src="./images/sql.gif" alt="Animated GIF related to SQL databases" width="300" height="200"
-                        loading="lazy" class="skill-gif" />
-                </div>
-            </div>
-        </section>
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>
+        Ready to collaborate? Let’s create impactful digital solutions.<br>
+        <button class="open-modal-btn">Open Contact Form</button>
+      </p>
+    </section>
+  </main>
 
-        <section id="contact-section" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Contact Me</h2>
-            <img src="./images/contact.gif" alt="Animated GIF showing contact interaction" width="300" height="200"
-                loading="lazy" class="contact-gif" />
-            <p>Ready to connect? Click below to access my contact details and send a message!</p>
-            <button type="button" class="open-modal-btn" aria-haspopup="dialog" aria-controls="contactModal">
-                <span class="mint-green">Get in Touch</span>
-            </button>
-            <p>Feel free to reach out for any inquiries, project proposals, or just to say hello! I'm always open to new
-                opportunities and collaborations.</p>
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal" aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <h3>Contact Me</h3>
+      <form id="contact-form" action="https://formspree.io/f/xyzpjdnj" method="POST" autocomplete="off">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="name" required aria-required="true" autocomplete="name" placeholder="Your name...">
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" name="email" required aria-required="true" autocomplete="email" placeholder="Your email...">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" required aria-required="true" rows="4" placeholder="How can I help you?"></textarea>
+        <div class="modal-actions">
+          <button type="button" class="close-btn">Cancel</button>
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-            <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-form-title">
-                <div class="modal-content">
-                    <h3 id="contact-form-title">Send a Message</h3>
-                    <form id="contact-form" action="https://formspree.io/f/your-form-id" method="post">
-                        <div class="modal-actions">
-                            <button type="button" class="close-btn">Close</button>
-                        </div>
-                    </form>
-                    <ul>
-                        <li>
-                            <p>For direct inquiries:</p>
-                            Email:
-                            <a href="mailto:gonzalez.engineer42@gmail.com?subject=Inquiry from your Portfolio Website"
-                                class="email-link">
-                                gonzalez.engineer42@gmail.com
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>
-            © 2025
-            <a href="https://luisru42.github.io/Web-Development/" target="_blank" rel="noopener noreferrer"
-                class="custom-link">BuildWithRu</a>
-            | All rights reserved.
-        </p>
-    </footer>
-
-    <script src="backgroundParticles.js" defer></script>
-    <script src="modalHandler.js" defer></script>
+  <footer class="site-footer">
+    &copy; 2024 Luis Ruben Gonzalez Pagan. All rights reserved.
+  </footer>
+  <script src="backgroundParticles.js"></script>
+  <script src="modalHandler.js"></script>
 </body>
-
 </html>

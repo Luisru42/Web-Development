@@ -1,724 +1,421 @@
-/* --- CSS Variables --- */
 :root {
-    /* Primary brand colors */
-    --clr-primary-mint: rgb(120, 250, 211);
-    /* Used for accents, links, and interactive elements */
-    --clr-primary-blue: #54c4f8;
-    /* A complementary blue for interactive states */
-
-    /* Grayscale/neutral colors */
-    --clr-bg-dark: black;
-    /* Main background color */
-    --clr-bg-light-dark: #0c0c0c;
-    /* For modal content background */
-    --clr-text-light: white;
-    /* Main text color */
-    --clr-secondary-dark: #222;
-    /* For header and footer backgrounds */
-    --clr-border-light: #ccc;
-    /* Light gray for borders */
-
-    /* Font sizes */
-    --fs-base: 1.125rem;
-    /* Base font size (18px) */
-    --fs-large: 1.25rem;
-    /* Larger font size for specific elements (20px) */
-    --fs-heading-1: 3rem;
-    /* H1 size */
-    --fs-heading-2: 2.25rem;
-    /* H2 size */
-    --fs-heading-3: 1.75rem;
-    /* H3 size */
-
-    /* Spacing */
-    --space-sm: 0.75rem;
-    /* 12px */
-    --space-md: 1rem;
-    /* 16px */
-    --space-lg: 1.5rem;
-    /* 24px */
-    --space-xl: 2rem;
-    /* 32px */
-    --space-xxl: 3rem;
-    /* 48px; Added for larger padding */
-
-    /* Border radius */
-    --radius-sm: 5px;
-    --radius-md: 8px;
-    --radius-lg: 10px;
-
-    /* Transitions */
-    --transition-ease: all 0.3s ease;
+  --clr-primary-muted: #4a7c74;
+  --clr-primary-blue: #2b7aef;
+  --clr-bg-dark: #121212;
+  --clr-bg-light-dark: #1c1c1c;
+  --clr-text-light: #f3f3f3;
+  --clr-border-light: #555;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --transition-ease: all 0.25s ease-in-out;
+  --space-lg: 1.75rem;
+  --space-md: 1rem;
+  --space-xl: 2.25rem;
+  --fs-base: 1.08rem;
+  --fs-heading-2: 2.2rem;
+  --fs-heading-3: 1.5rem;
+  --shadow-card: 0 4px 20px rgba(43,122,239,0.05);
 }
 
-/* --- Universal Box Sizing & Reset --- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    /* Includes padding and border in element's total width/height */
-    margin: 0;
-    /* Reset default margins */
-    padding: 0;
-    /* Reset default paddings */
+html {
+  scroll-behavior: smooth;
+  background: var(--clr-bg-dark);
 }
-
-/* --- Body Styles --- */
 body {
-    /* Link 'Montserrat' from Google Fonts in your HTML <head>: */
-    /* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> */
-    font-family: 'Montserrat', sans-serif;
-    /* Using a more modern, readable font */
-    background: var(--clr-bg-dark);
-    color: var(--clr-text-light);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Centers main content horizontally */
-    min-height: 100vh;
-    font-size: var(--fs-base);
-    line-height: 1.6;
-    overflow-x: hidden;
-    /* Prevents horizontal scrollbar */
-    text-align: center;
-    /* Default text alignment for direct children of body */
-    -webkit-font-smoothing: antialiased;
-    /* Smoother font rendering on macOS/iOS */
-    -moz-osx-font-smoothing: grayscale;
-    /* Smoother font rendering on macOS/iOS */
+  font-family: 'Inter', 'Montserrat', 'Roboto', Arial, sans-serif;
+  background: var(--clr-bg-dark);
+  color: var(--clr-text-light);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  font-size: var(--fs-base);
+  line-height: 1.6;
 }
 
-/* --- Canvas Background --- */
-#backgroundCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* Puts it behind all other content */
-    display: block;
-    /* Ensure it behaves as a block element */
+/* Header */
+.site-header, .site-footer {
+  background-color: var(--clr-bg-light-dark);
+  color: var(--clr-primary-muted);
+  padding: var(--space-lg);
+  text-align: center;
+  border-bottom: 1px solid var(--clr-border-light);
 }
-
-/* --- Header & Footer Styles --- */
-.site-header,
 .site-footer {
-    background: var(--clr-secondary-dark);
-    padding: var(--space-md) var(--space-lg);
-    /* Consistent padding */
-    position: relative;
-    z-index: 10;
-    /* Ensures header/footer are above other content */
-    width: 100%;
-    max-width: 1200px;
-    /* Increased max-width for a wider layout if desired */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    /* Subtle shadow for depth */
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--clr-border-light);
+  border-bottom: none;
 }
-
-.site-header {
-    margin-bottom: var(--space-xl);
-    /* Space below the header */
-}
-
 .header-content {
-    display: flex;
-    flex-direction: column;
-    /* Stacks on small screens */
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
-    max-width: 900px;
-    /* Constrain header content width */
-    margin: 0 auto;
-    /* Center header content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 900px;
+  margin: 0 auto;
 }
-
-.site-header h1 {
-    font-size: var(--fs-heading-2);
-    /* Adjusted heading size */
-    color: var(--clr-primary-mint);
-    margin-bottom: var(--space-sm);
-}
-
-.site-footer {
-    margin-top: var(--space-xl);
-    /* Space above the footer */
-}
-
-.site-footer p {
-    font-size: var(--fs-base);
-}
-
-/* --- Navigation Styles --- */
 .main-nav-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    /* Allow items to wrap on smaller screens */
-    justify-content: center;
-    gap: var(--space-lg);
-    /* Space between nav items */
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: 0;
 }
-
 .main-nav-list li a {
-    text-decoration: none;
-    color: var(--clr-text-light);
-    padding: var(--space-sm) var(--space-md);
-    /* Add padding for larger click area */
-    transition: var(--transition-ease);
-    border-radius: var(--radius-sm);
-    font-size: var(--fs-base);
-    font-weight: 500;
-    /* Slightly bolder */
+  color: var(--clr-text-light);
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition-ease);
+  padding: 0.25rem 0.5rem;
+  font-size: var(--fs-base);
+  text-decoration: none;
 }
-
 .main-nav-list li a:hover,
 .main-nav-list li a:focus {
-    /* Add focus state for accessibility */
-    color: var(--clr-primary-mint);
-    transform: translateY(-2px);
-    /* Subtle lift effect */
+  color: var(--clr-primary-muted);
+  border-bottom: 2px solid var(--clr-primary-muted);
 }
 
-/* --- Main Content & Section Styles --- */
-#content {
-    flex: 1;
-    /* Allows main content to grow and fill available space */
-    padding: var(--space-xl) var(--space-lg);
-    /* Generous padding for main content */
-    position: relative;
-    z-index: 1;
-    /* Ensures content is above canvas */
-    max-width: 1000px;
-    /* Adjusted max-width for content */
-    width: 100%;
-    margin: 0 auto;
-    /* Centers main content */
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    /* Space between major sections */
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
-
-section {
-    padding: var(--space-lg);
-    background-color: rgba(34, 34, 34, 0.7);
-    /* Slightly transparent background for sections */
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    /* Enhanced shadow for sections */
-    border: 1px solid rgba(120, 250, 211, 0.2);
-    /* Subtle border matching primary color */
-    /* For JS-driven animation: */
-    opacity: 0;
-    transform: translateY(20px);
-    /* Start slightly below */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    /* Smooth transition */
+.social-icons a img {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(1) brightness(1.18);
+  transition: filter 0.2s, transform 0.2s;
 }
-
-section.section-visible {
-    /* Class added by JS for animation */
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-section h2,
-section h3 {
-    color: var(--clr-primary-mint);
-    margin-bottom: var(--space-md);
-    font-size: var(--fs-heading-2);
-    /* Consistent heading sizes */
-    text-align: center;
-}
-
-section p {
-    margin-bottom: var(--space-sm);
-    text-align: justify;
-    /* Justify text for better readability in paragraphs */
-    padding: 0 var(--space-sm);
-    /* Slight horizontal padding for paragraphs */
-}
-
-/* Specific adjustments for headings in the hero section (main profile info) */
-.profile-info h2 {
-    font-size: var(--fs-heading-2);
-    margin-bottom: var(--space-sm);
-    color: var(--clr-text-light);
-    /* Keep 'Hello there' white */
-}
-
-.profile-info h3 {
-    font-size: var(--fs-heading-3);
-    color: var(--clr-primary-mint);
-    /* Highlight the name */
-    margin-bottom: var(--space-sm);
-}
-
-.profile-info p {
-    text-align: center;
-    /* Keep profile info paragraphs centered on mobile */
-}
-
-/* --- General Link Styles --- */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* --- Call-to-action Button (Open Modal Button) --- */
-.open-modal-btn {
-    background: none;
-    border: 2px solid var(--clr-primary-mint);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md);
-    color: var(--clr-primary-mint);
-    font-weight: bold;
-    font-size: var(--fs-base);
-    cursor: pointer;
-    transition: var(--transition-ease);
-    display: inline-block;
-    /* Allows padding and transitions to apply correctly */
-    margin-top: var(--space-md);
-    white-space: nowrap;
-    /* Prevent text from wrapping inside the button */
-}
-
-.open-modal-btn:hover,
-.open-modal-btn:focus {
-    background-color: var(--clr-primary-mint);
-    color: var(--clr-bg-dark);
-    /* Changed to black for better contrast */
-    box-shadow: 0 0 15px var(--clr-primary-mint);
-    /* Glowing effect */
-}
-
-.open-modal-btn .mint-green {
-    /* Target the span inside the button */
-    color: inherit;
-    /* Inherit color from parent button */
-    font-weight: inherit;
-}
-
-/* --- Footer Link Styling --- */
-.site-footer .custom-link {
-    color: var(--clr-primary-mint);
-    font-weight: bold;
-    transition: var(--transition-ease);
-}
-
-.site-footer .custom-link:hover,
-.site-footer .custom-link:focus {
-    color: var(--clr-primary-blue);
-    text-decoration: underline;
-}
-
-/* --- Modal Styles --- */
-.modal {
-    display: none;
-    /* Initially hidden, controlled by JS */
-    position: fixed;
-    inset: 0;
-    /* Shorthand for top, right, bottom, left: 0; */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Darker, slightly more opaque overlay */
-    justify-content: center;
-    /* Centering for flexbox */
-    align-items: center;
-    /* Centering for flexbox */
-    z-index: 1000;
-    /* Ensure modal is on top of everything */
-    opacity: 0;
-    /* Start hidden for animation */
-    pointer-events: none;
-    /* Allow clicks through when hidden */
-    transition: opacity 0.3s ease-out;
-    /* Smooth transition for showing/hiding */
-}
-
-.modal.is-visible {
-    /* Class added by JS when modal is open */
-    display: flex;
-    /* Show with flexbox when visible */
-    opacity: 1;
-    pointer-events: auto;
-    /* Allow interaction when visible */
-}
-
-.modal-content {
-    background-color: var(--clr-bg-light-dark);
-    margin: var(--space-xl);
-    /* Margin from viewport edges */
-    padding: var(--space-xl);
-    width: 90%;
-    max-width: 500px;
-    /* Set a reasonable max-width for modal content */
-    color: var(--clr-primary-mint);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    /* More pronounced shadow */
-    border: 1px solid var(--clr-primary-mint);
-    /* Border to match theme */
-    transform: translateY(-20px);
-    /* Start slightly above for animation */
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    opacity: 0;
-    /* Start hidden for content animation */
-}
-
-.modal.is-visible .modal-content {
-    transform: translateY(0);
-    /* Slide into place */
-    opacity: 1;
-}
-
-.modal-content h3 {
-    font-size: var(--fs-heading-3);
-    margin-bottom: var(--space-lg);
-    color: var(--clr-text-light);
-    /* Make modal title white */
-}
-
-/* --- Form Elements within Modal --- */
-.modal-content label {
-    display: block;
-    text-align: left;
-    /* Align labels to the left */
-    margin-bottom: var(--space-sm);
-    font-weight: bold;
-    color: var(--clr-primary-mint);
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    display: block;
-    width: 100%;
-    /* Take full width of modal content */
-    padding: var(--space-sm);
-    font-size: var(--fs-base);
-    border: 1px solid var(--clr-border-light);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-md);
-    /* Space below each input */
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Slightly transparent input fields */
-    color: var(--clr-text-light);
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--clr-primary-mint);
-    box-shadow: 0 0 0 3px rgba(120, 250, 211, 0.3);
-    /* Focus ring effect */
-}
-
-textarea {
-    resize: vertical;
-    /* Allow vertical resizing only */
-    min-height: 100px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    /* Align buttons to the right */
-    gap: var(--space-md);
-    /* Space between buttons */
-    margin-top: var(--space-lg);
-}
-
-.modal-actions button {
-    display: inline-block;
-    /* Allow buttons to sit side-by-side */
-    width: auto;
-    /* Auto width based on content */
-    max-width: none;
-    /* Override max-width from general button rule */
-    margin: 0;
-    /* Reset margins */
-    padding: var(--space-sm) var(--space-lg);
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition-ease);
-    border-radius: var(--radius-sm);
-    /* Ensure consistent button border-radius */
-}
-
-.modal-actions .close-btn {
-    background-color: #dc3545;
-    /* Red for close button */
-    color: var(--clr-text-light);
-    border: none;
-}
-
-.modal-actions .close-btn:hover,
-.modal-actions .close-btn:focus {
-    background-color: #c82333;
-    transform: translateY(-1px);
-}
-
-.modal-actions .submit-btn {
-    background-color: var(--clr-primary-mint);
-    color: var(--clr-bg-dark);
-    /* Black text for submit button */
-    border: none;
-}
-
-.modal-actions .submit-btn:hover,
-.modal-actions .submit-btn:focus {
-    background-color: #8be0b2;
-    /* Lighter mint green on hover */
-    transform: translateY(-1px);
-}
-
-/* --- Image Styles --- */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: var(--space-md) auto;
-    /* Add some vertical margin, center horizontally */
-    border-radius: var(--radius-sm);
-    /* Slightly rounded corners for all images */
+.social-icons a:hover img, .social-icons a:focus img {
+  filter: none;
+  transform: scale(1.18) rotate(-6deg);
 }
 
 .profile-picture {
-    border-radius: 50%;
-    /* Make profile picture perfectly round */
-    border: 3px solid var(--clr-primary-mint);
-    /* A border around the profile pic */
-    object-fit: cover;
-    /* Ensure image covers the area without distortion */
-    aspect-ratio: 1 / 1;
-    /* Keep it square */
-    width: 200px;
-    /* Fixed width for profile picture */
-    height: 200px;
-    /* Fixed height for profile picture */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--clr-primary-muted);
+  margin-bottom: 1rem;
+  box-shadow: 0 0 0 6px #ffffff15;
 }
 
-.skill-gif,
-.contact-gif,
-.coding-gif-section img {
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    margin: var(--space-md) auto;
-    /* Center them and add vertical spacing */
+/* Content */
+#content {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+section {
+  background-color: var(--clr-bg-light-dark);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s, transform .7s;
+}
+.section-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+h1, h2, h3 {
+  color: var(--clr-primary-muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+h2 {
+  font-size: var(--fs-heading-2);
+}
+h3 {
+  font-size: var(--fs-heading-3);
 }
 
-/* --- Specific Section Layouts --- */
-
-/* DEFAULT HERO SECTION STYLES (ALWAYS VISIBLE) */
-.hero-section {
-    display: flex;
-    flex-direction: column;
-    /* Default to column on small screens */
-    align-items: center;
-    gap: var(--space-lg);
-    padding: var(--space-xl);
-    /* *** CRITICAL FIX FOR VISIBILITY *** */
-    opacity: 1 !important;
-    /* Ensure it's fully visible from the start */
-    transform: translateY(0) !important;
-    /* Ensure it's in its correct starting position */
+/* Soft skills */
+.soft-skills-list {
+  list-style: none;
+  display: flex;
+  gap: .7rem;
+  margin-top: .7rem;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.soft-skills-list li {
+  background: rgba(43, 122, 239, 0.085);
+  border-radius: var(--radius-md);
+  color: var(--clr-primary-blue);
+  padding: .35em .95em;
+  font-size: .99em;
 }
 
-.coding-gif-section {
-    /* Added this for consistency with other image sections */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: var(--space-lg);
-    margin-bottom: var(--space-xl);
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--space-md);
+}
+.project-card {
+  background: #19232f;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 10px #5ad1bd1a;
+  padding: 1.2rem 1rem 1.35rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-left: 6px solid var(--clr-primary-muted);
+  transition: transform .18s;
+  min-height: 230px;
+}
+.project-card:hover, .project-card:focus-within {
+  transform: translateY(-7px) scale(1.015);
+  box-shadow: 0 5px 18px #2b7aef47;
+}
+.project-card h3 {
+  margin-top: 0;
+  align-self: flex-start;
+}
+.project-desc {
+  margin-top: -.2em;
+  margin-bottom: .8em;
+  color: #c6e7df;
+}
+.tech-tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .7em;
+}
+.tech-tags li {
+  background: #2b7aef21;
+  color: var(--clr-primary-blue);
+  padding: .2em .8em;
+  border-radius: var(--radius-md);
+  font-size: 0.98em;
+}
+.project-links a {
+  color: var(--clr-primary-muted);
+  text-decoration: underline;
+  font-weight: 600;
+  margin-right: 1.1em;
+  transition: color .16s;
+}
+.project-links a:hover, .project-links a:focus {
+  color: var(--clr-primary-blue);
 }
 
-.skills-content {
-    display: flex;
-    flex-direction: column;
-    /* Default to column on small screens */
-    align-items: center;
-    gap: var(--space-lg);
-    text-align: center;
+/* Skills Grid & Badges */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md) var(--space-lg);
+  margin-top: 1.1em;
+}
+.skill-title {
+  font-weight: 600;
+  color: var(--clr-primary-blue);
+}
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .38em;
+  margin-top: .35em;
+}
+.skill-badges span {
+  display: inline-block;
+  background: #4688e36a;
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: .18em .7em;
+  font-size: 0.99em;
+  margin-bottom: .21em;
 }
 
-.skills-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* Responsive grid for skills */
-    gap: var(--space-sm);
-    margin-bottom: var(--space-lg);
-    padding: 0;
+/* Education Timeline */
+.edu-timeline {
+  list-style: none;
+  padding: 0;
+  border-left: 3.5px solid var(--clr-primary-muted);
+  margin-left: 14px;
+  margin-top: 1.2em;
+}
+.edu-timeline li {
+  position: relative;
+  margin-bottom: .85em;
+  padding-left: 1.4em;
+  min-height: 2.3em;
+}
+.edu-timeline li::before {
+  content: '';
+  position: absolute;
+  left: -13.5px;
+  top: .33em;
+  width: 17px;
+  height: 17px;
+  background-color: var(--clr-primary-muted);
+  border-radius: 50%;
+  border: 2.5px solid #282828;
+}
+.edu-title {
+  font-weight: 600;
+  color: var(--clr-primary-blue);
+}
+.edu-info {
+  font-size: .99em;
+  margin-left: .7em;
+  color: #d2efe6;
 }
 
-.skills-list li {
-    background-color: rgba(120, 250, 211, 0.1);
-    /* Subtle background for skill items */
-    padding: var(--space-sm);
-    border-radius: var(--radius-sm);
-    font-weight: 500;
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.68);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
-
-.skill-images {
-    display: flex;
-    flex-direction: column;
-    /* Default to column */
-    gap: var(--space-md);
-    width: 100%;
-    align-items: center;
+.modal.is-visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
-
-/* Fix for Contact Section Centering */
-#contact-section p {
-    text-align: center;
-    /* Override justify or left alignment from parent rules */
-    margin: var(--space-md) auto;
-    /* Center paragraphs and add vertical spacing */
-    max-width: 600px;
-    /* Optional: constrain width for readability on large screens */
+.modal-content {
+  background-color: var(--clr-bg-light-dark);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  color: var(--clr-text-light);
+  box-shadow: 0 8px 24px #222 77;
+  border: 1px solid var(--clr-border-light);
+  position: relative;
 }
-
-#contact-section .contact-gif {
-    margin-bottom: var(--space-lg);
-    /* Add some space below the GIF */
+.modal-content h3 {
+  margin-bottom: var(--space-lg);
+  color: var(--clr-primary-muted);
 }
-
-/* Ensure the button is centered, even though it's display: inline-block */
-#contact-section .open-modal-btn {
-    display: block;
-    /* Make it a block element to allow auto margins to center */
-    margin: var(--space-lg) auto;
-    /* Center the button horizontally */
+.modal-content label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--clr-primary-muted);
 }
-
-
-/* --- Responsive Design --- */
-@media (min-width: 768px) {
-    .header-content {
-        flex-direction: row;
-        /* Header items side-by-side on larger screens */
-        justify-content: space-between;
-    }
-
-    .main-nav-list {
-        justify-content: flex-end;
-        /* Align nav items to the right */
-    }
-
-    .hero-section {
-        flex-direction: row;
-        /* Profile section side-by-side */
-        text-align: left;
-        align-items: flex-start;
-        /* Align image and text to the top */
-    }
-
-    .profile-picture {
-        margin-right: var(--space-xl);
-        /* Space between image and text */
-        margin-left: 0;
-        /* Reset margin */
-        flex-shrink: 0;
-        /* Prevent shrinking */
-    }
-
-    .profile-info {
-        text-align: left;
-        /* Align profile info text to the left */
-    }
-
-    .profile-info p {
-        text-align: left;
-        /* Ensure paragraphs are left-aligned */
-    }
-
-    .skills-content {
-        flex-direction: row;
-        /* Skills content side-by-side */
-        justify-content: space-around;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .skills-list {
-        grid-template-columns: repeat(2, 1fr);
-        /* Two columns for skills on larger screens */
-        flex-grow: 1;
-    }
-
-    .skill-images {
-        flex-direction: column;
-        /* Changed from row, let's keep vertical on desktop within the flex container */
-        gap: var(--space-md);
-        width: 100%;
-        align-items: center;
-    }
+input[type="text"], input[type="email"], textarea {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: var(--fs-base);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  background-color: rgba(243,243,243,0.07);
+  color: var(--clr-text-light);
 }
-
-@media (min-width: 1024px) {
-
-    .site-header,
-    .site-footer {
-        padding: var(--space-md) var(--space-xl);
-    }
-
-    #content {
-        padding: var(--space-xl) var(--space-xxl);
-    }
-
-    /* Further adjust skill images for larger screens if desired */
-    @media (min-width: 1200px) {
-        .skill-images {
-            /* Changed to column to always stack vertically, overriding previous 'row' */
-            flex-direction: column;
-        }
-    }
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--clr-primary-blue);
+  box-shadow: 0 0 0 2px rgba(43,122,239,0.12);
 }
-
-/* --- Keyframe Animations --- */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+textarea {
+  resize: vertical;
 }
-
-@keyframes slideInUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
 }
-
-/* Optional: Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
+.modal-actions button {
+  padding: 0.6rem 1.3rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.18s;
+  background: none;
+  margin-top: 0;
 }
-
-/* Add this to your styles.css */
+.modal-actions .close-btn {
+  background-color: #c9302c;
+  color: #f3f3f3;
+}
+.modal-actions .close-btn:hover,
+.modal-actions .close-btn:focus {
+  background-color: #a12820;
+}
+.modal-actions .submit-btn {
+  background-color: var(--clr-primary-muted);
+  color: var(--clr-text-light);
+}
+.modal-actions .submit-btn:hover,
+.modal-actions .submit-btn:focus {
+  background-color: var(--clr-primary-blue);
+}
+.open-modal-btn {
+  background-color: var(--clr-primary-muted);
+  border: none;
+  color: var(--clr-text-light);
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .16s, box-shadow .15s;
+  box-shadow: none;
+  margin-top: var(--space-md);
+}
+.open-modal-btn:hover,
+.open-modal-btn:focus {
+  background-color: var(--clr-primary-blue);
+  outline: none;
+}
 .email-link {
-    color: var(--clr-primary-blue); /* Uses your defined mint color */
-    text-decoration: underline; /* Adds an underline to indicate it's a link */
-    font-weight: bold; /* Makes the text bold */
-    transition: var(--transition-ease); /* Adds a smooth transition for hover effects */
+  color: var(--clr-primary-blue);
+  text-decoration: underline;
+  transition: color 0.2s;
+  font-weight: 600;
 }
-
 .email-link:hover,
 .email-link:focus {
-    color: #faf600; /* Changes color on hover/focus */
-    text-decoration: double underline; /* Changes to a dotted underline for emphasis */
+  color: #faf600;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+  #content {
+    padding: var(--space-md) .4em;
+  }
+  .project-card {
+    min-height: 160px;
+    padding: 0.65em 0.5em 1.2em 0.6em;
+  }
+  .skills-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .profile-picture {
+    width: 108px;
+    height: 108px;
+  }
+  h1 { font-size: 1.45em; }
+  h2 { font-size: 1.19em; }
+  .social-icons img { width: 26px; height: 26px; }
+  section { padding: .7em; }
+  .modal-content { padding: 1em 0.5em; width: 96vw; }
+}
+canvas#backgroundCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
