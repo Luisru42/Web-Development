@@ -1,10 +1,10 @@
 :root {
-  --clr-primary-muted: #4a7c74;
-  --clr-primary-blue: #2b7aef;
-  --clr-bg-dark: #121212;
-  --clr-bg-light-dark: #1c1c1c;
+  --clr-primary-muted: #32b3a8;
+  --clr-primary-blue: #4684e2;
+  --clr-bg-dark: #060d1a;
+  --clr-bg-light-dark: #0c0d0f;
   --clr-text-light: #f3f3f3;
-  --clr-border-light: #555;
+  --clr-border-light: #32b3a8;
   --radius-md: 6px;
   --radius-lg: 10px;
   --transition-ease: all 0.25s ease-in-out;
@@ -14,7 +14,7 @@
   --fs-base: 1.08rem;
   --fs-heading-2: 2.2rem;
   --fs-heading-3: 1.5rem;
-  --shadow-card: 0 4px 20px rgba(43,122,239,0.05);
+  --shadow-card: 0 4px 20px rgba(28, 105, 219, 0.05);
 }
 
 html {
@@ -162,7 +162,7 @@ h3 {
   gap: var(--space-md);
 }
 .project-card {
-  background: #19232f;
+  background: #0c0d0f;
   border-radius: var(--radius-md);
   box-shadow: 0 2px 10px #5ad1bd1a;
   padding: 1.2rem 1rem 1.35rem 1rem;
@@ -175,7 +175,7 @@ h3 {
 }
 .project-card:hover, .project-card:focus-within {
   transform: translateY(-7px) scale(1.015);
-  box-shadow: 0 5px 18px #2b7aef47;
+  box-shadow: 0 5px 18px #3ad82c47;
 }
 .project-card h3 {
   margin-top: 0;
@@ -195,7 +195,7 @@ h3 {
   margin-bottom: .7em;
 }
 .tech-tags li {
-  background: #2b7aef21;
+  background: #0069fc6a;
   color: var(--clr-primary-blue);
   padding: .2em .8em;
   border-radius: var(--radius-md);
@@ -231,7 +231,7 @@ h3 {
 }
 .skill-badges span {
   display: inline-block;
-  background: #4688e36a;
+  background: #0069fc6a;
   color: #fff;
   border-radius: var(--radius-md);
   padding: .18em .7em;
@@ -266,7 +266,7 @@ h3 {
 }
 .edu-title {
   font-weight: 600;
-  color: var(--clr-primary-blue);
+  color: var(--clr-primary-white);
 }
 .edu-info {
   font-size: .99em;

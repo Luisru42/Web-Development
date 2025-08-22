@@ -1,27 +1,38 @@
-// modalHandler.js
 document.addEventListener('DOMContentLoaded', () => {
   const contactModal = document.getElementById('contactModal');
   const openModalBtn = document.querySelector('.open-modal-btn');
-  const closeBtns = contactModal.querySelectorAll('.close-btn');
-  const submitBtn = contactModal.querySelector('.submit-btn');
+  const closeBtns = contactModal ? contactModal.querySelectorAll('.close-btn') : [];
+  const submitBtn = contactModal ? contactModal.querySelector('.submit-btn') : null;
+
   if (!contactModal || !openModalBtn || closeBtns.length === 0) {
     console.error('Modal elements not found.');
     return;
   }
-  // Trap focus inside modal when open (accessibility)
+
+  // Trap keyboard focus inside the modal for accessibility
   function trapFocus(e) {
     if (!contactModal.classList.contains('is-visible')) return;
+
     const focusableEls = contactModal.querySelectorAll('input, textarea, button');
-    const firstEl = focusableEls[0], lastEl = focusableEls[focusableEls.length - 1];
+    const firstEl = focusableEls[0];
+    const lastEl = focusableEls[focusableEls.length - 1];
+
     if (e.key === 'Tab') {
       if (e.shiftKey) {
-        if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
       } else {
-        if (document.activeElement === lastEl) { e.preventDefault(); firstEl.focus(); }
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
       }
     }
   }
-  // Open
+
+  // Opens the modal with focus management
   const openModal = () => {
     contactModal.classList.add('is-visible');
     contactModal.setAttribute('aria-hidden', 'false');
@@ -30,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     contactModal.addEventListener('click', closeModalOutside);
     document.addEventListener('keydown', trapFocus);
   };
-  // Close
+
+  // Closes the modal and restores focus
   const closeModal = () => {
     contactModal.classList.remove('is-visible');
     contactModal.setAttribute('aria-hidden', 'true');
@@ -38,32 +50,40 @@ document.addEventListener('DOMContentLoaded', () => {
     document.removeEventListener('keydown', trapFocus);
     openModalBtn.focus();
   };
-  // Click outside
-  const closeModalOutside = event => {
+
+  // Close modal if clicking outside content
+  const closeModalOutside = (event) => {
     if (event.target === contactModal) closeModal();
   };
-  // Event Listeners
+
+  // Event listeners
   openModalBtn.addEventListener('click', openModal);
   closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
-  // ESC key
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && contactModal.classList.contains('is-visible')) closeModal();
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && contactModal.classList.contains('is-visible')) {
+      closeModal();
+    }
   });
-  // Form submission
+
+  // Form submission with Fetch API and error handling
   const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async event => {
+  if (contactForm && submitBtn) {
+    contactForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       const formData = new FormData(contactForm);
       const formUrl = contactForm.getAttribute('action');
+
       try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
+
         const response = await fetch(formUrl, {
           method: 'POST',
           body: formData,
           headers: { 'Accept': 'application/json' }
         });
+
         if (response.ok) {
           alert('Thank you for your message! I will get back to you soon.');
           contactForm.reset();
@@ -72,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await response.json();
           if (data.errors) {
             alert(`Error: ${data.errors.map(error => error.message).join(', ')}`);
-          } else alert('Oops! There was a problem sending your message. Please try again.');
+          } else {
+            alert('Oops! There was a problem sending your message. Please try again.');
+          }
         }
       } catch (error) {
         console.error('Submission error:', error);
@@ -83,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  // Section fade-in animation
+
+  // Intersection Observer to fade in page sections on scroll
   const sections = document.querySelectorAll('section:not(.hero-section)');
   const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
   const sectionObserver = new IntersectionObserver((entries, observer) => {

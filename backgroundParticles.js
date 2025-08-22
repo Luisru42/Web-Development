@@ -1,124 +1,133 @@
-// =================== Canvas Particle Animation ===================
+// =================== Background Particle Animation with Professional Colors ===================
+
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const particleCount = 100;
-const particleRadius = 2;
+const PARTICLE_COUNT = 100;
+const PARTICLE_RADIUS = 2;
+const INTERACTION_DISTANCE = 100;
+
 let mouse = { x: null, y: null };
-const interactionDistance = 100; // Distancia de interacción entre partículas y el mouse
 
-// Configuración responsiva del canvas
+// Professional color palette for particles (soft blues and grays)
+const COLORS = [
+  'rgba(43, 122, 239, OPACITY)',   // soft blue
+  'rgba(87, 196, 209, OPACITY)',   // teal
+  'rgba(148, 181, 209, OPACITY)',  // light blue-gray
+  'rgba(200, 210, 218, OPACITY)',  // lighter gray-blue
+  'rgba(240, 245, 250, OPACITY)'   // very light gray
+];
+
+// Responsive canvas size setup
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initParticles(); // Re-inicializa las partículas al cambiar el tamaño del canvas para evitar problemas de posición
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initParticles();
 }
 
-// Eventos del navegador
-window.addEventListener('resize', resizeCanvas); // Llama a resizeCanvas al cambiar el tamaño de la ventana
-window.addEventListener('mousemove', (event) => {
-    mouse.x = event.clientX;
-    mouse.y = event.clientY;
-});
-
-// Clase Particle
+// Particle class definition with color assignment
 class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.vx = Math.random() * 2 - 1; // Velocidad inicial aleatoria en el eje X
-        this.vy = Math.random() * 2 - 1; // Velocidad inicial aleatoria en el eje Y
-        this.opacity = 0; // Opacidad inicial de la partícula
-        this.fadeIn = true; // Controla si la partícula debe aparecer gradualmente
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.vx = (Math.random() * 2) - 1;
+    this.vy = (Math.random() * 2) - 1;
+    this.opacity = 0;
+    this.fadeIn = true;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+    if (mouse.x !== null && mouse.y !== null) {
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < INTERACTION_DISTANCE) {
+        const force = (INTERACTION_DISTANCE - distance) / INTERACTION_DISTANCE;
+        this.x += dx * force * 0.3;
+        this.y += dy * force * 0.3;
+      }
     }
 
-    update() {
-        // Actualiza la posición de la partícula
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Rebotar en los bordes del canvas
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1; // Invierte la velocidad en X si alcanza un borde horizontal
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1; // Invierte la velocidad en Y si alcanza un borde vertical
-
-        // Interacción con el mouse
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < interactionDistance) {
-            // Aplica una fuerza que aleja la partícula del mouse
-            const force = (interactionDistance - distance) / interactionDistance; // Fuerza basada en la distancia
-            this.x -= dx * force * 0.3; // Ajusta la fuerza y la dirección del desplazamiento
-            this.y -= dy * force * 0.3;
-        }
-
-        //Aparecer gradualmente
-        if (this.fadeIn) {
-            this.opacity += 0.03; // Incrementa la opacidad
-            if (this.opacity >= 1) {
-                this.opacity = 1;
-                this.fadeIn = false; // Detiene el efecto de aparición gradual
-            }
-        }
+    if (this.fadeIn) {
+      this.opacity += 0.02;
+      if (this.opacity >= 1) {
+        this.opacity = 1;
+        this.fadeIn = false;
+      }
     }
+  }
 
-    draw() {
-        // Dibuja la partícula como un círculo
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, particleRadius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // Usa la opacidad de la partícula
-        ctx.fill();
-        ctx.closePath(); // Cierra el path del círculo
-    }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, PARTICLE_RADIUS, 0, Math.PI * 2);
+    const colorWithOpacity = this.color.replace('OPACITY', this.opacity.toFixed(2));
+    ctx.fillStyle = colorWithOpacity;
+    ctx.fill();
+    ctx.closePath();
+  }
 }
 
-// Inicializar partículas
+// Initialize particles evenly spaced
 function initParticles() {
-    particles = []; // Reinicia el array de partículas
-    for (let i = 0; i < particleCount; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        particles.push(new Particle(x, y)); // Crea una nueva partícula y la añade al array
-    }
+  particles = [];
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    particles.push(new Particle(x, y));
+  }
 }
 
-// Conectar partículas con líneas
+// Draw connecting lines with gentle gradient between particles
 function connectParticles() {
-    const opacityFactor = 0.008; // Ajusta este valor para controlar la opacidad de las líneas
+  const opacityFactor = 0.008;
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
 
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < INTERACTION_DISTANCE) {
+        const opacity = Math.max(0, 1 - distance * opacityFactor);
+        const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+        gradient.addColorStop(0, particles[i].color.replace('OPACITY', opacity.toFixed(2)));
+        gradient.addColorStop(1, particles[j].color.replace('OPACITY', opacity.toFixed(2)));
 
-            if (distance < interactionDistance) {
-                // Conecta las partículas con una línea si están lo suficientemente cerca
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                const opacity = Math.max(0, 1 - distance * opacityFactor); // Opacidad basada en la distancia
-                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`; // Color de la línea con opacidad variable
-                ctx.stroke();
-                ctx.closePath();
-            }
-        }
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = gradient;
+        ctx.stroke();
+        ctx.closePath();
+      }
     }
+  }
 }
 
-// Animación del canvas
+// Main animation loop
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas en cada frame
-    particles.forEach((particle) => {
-        particle.update(); // Actualiza la posición y propiedades de cada partícula
-        particle.draw(); // Dibuja cada partícula
-    });
-    connectParticles(); // Conecta las partículas con líneas
-    requestAnimationFrame(animate); // Solicita el próximo frame de animación
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  connectParticles();
+  requestAnimationFrame(animate);
 }
 
-// Inicialización
-resizeCanvas(); // Inicializa el tamaño del canvas y las partículas
-animate(); // Comienza el ciclo de animación
+// Event listeners
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+
+// Initialize and start animation
+resizeCanvas();
+animate();
