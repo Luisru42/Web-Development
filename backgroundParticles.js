@@ -1,16 +1,17 @@
-// =================== Background Particle Animation with Professional Colors ===================
+// ======================= Background Particle Animation =======================
+// Elegant particle system with soft color gradients and black canvas background
 
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 
-let particles = [];
+// Particle configuration
 const PARTICLE_COUNT = 100;
 const PARTICLE_RADIUS = 2;
 const INTERACTION_DISTANCE = 100;
-
+let particles = [];
 let mouse = { x: null, y: null };
 
-// Professional color palette for particles (soft blues and grays)
+// Soft professional color palette (blues and grays)
 const COLORS = [
   'rgba(43, 122, 239, OPACITY)',   // soft blue
   'rgba(87, 196, 209, OPACITY)',   // teal
@@ -19,20 +20,20 @@ const COLORS = [
   'rgba(240, 245, 250, OPACITY)'   // very light gray
 ];
 
-// Responsive canvas size setup
+// Resize canvas to full screen and initialize particles
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   initParticles();
 }
 
-// Particle class definition with color assignment
+// Particle class with motion, interaction, and fade-in effect
 class Particle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.vx = (Math.random() * 2) - 1;
-    this.vy = (Math.random() * 2) - 1;
+    this.vx = Math.random() * 2 - 1;
+    this.vy = Math.random() * 2 - 1;
     this.opacity = 0;
     this.fadeIn = true;
     this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
@@ -42,9 +43,11 @@ class Particle {
     this.x += this.vx;
     this.y += this.vy;
 
+    // Bounce off canvas edges
     if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
     if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
+    // Mouse interaction
     if (mouse.x !== null && mouse.y !== null) {
       const dx = this.x - mouse.x;
       const dy = this.y - mouse.y;
@@ -57,6 +60,7 @@ class Particle {
       }
     }
 
+    // Fade-in effect
     if (this.fadeIn) {
       this.opacity += 0.02;
       if (this.opacity >= 1) {
@@ -76,7 +80,7 @@ class Particle {
   }
 }
 
-// Initialize particles evenly spaced
+// Create initial particle set
 function initParticles() {
   particles = [];
   for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -86,7 +90,7 @@ function initParticles() {
   }
 }
 
-// Draw connecting lines with gentle gradient between particles
+// Connect nearby particles with gradient lines
 function connectParticles() {
   const opacityFactor = 0.008;
   for (let i = 0; i < particles.length; i++) {
@@ -97,7 +101,10 @@ function connectParticles() {
 
       if (distance < INTERACTION_DISTANCE) {
         const opacity = Math.max(0, 1 - distance * opacityFactor);
-        const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+        const gradient = ctx.createLinearGradient(
+          particles[i].x, particles[i].y,
+          particles[j].x, particles[j].y
+        );
         gradient.addColorStop(0, particles[i].color.replace('OPACITY', opacity.toFixed(2)));
         gradient.addColorStop(1, particles[j].color.replace('OPACITY', opacity.toFixed(2)));
 
@@ -114,19 +121,29 @@ function connectParticles() {
 
 // Main animation loop
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Set black background
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   particles.forEach(p => {
     p.update();
     p.draw();
   });
+
   connectParticles();
   requestAnimationFrame(animate);
 }
 
 // Event listeners
 window.addEventListener('resize', resizeCanvas);
-window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+window.addEventListener('mouseout', () => {
+  mouse.x = null;
+  mouse.y = null;
+});
 
 // Initialize and start animation
 resizeCanvas();
