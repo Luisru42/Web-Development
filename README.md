@@ -54,7 +54,7 @@ To preview the project locally:
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/web-development.git
+git clone https://github.com/Luisru42/web-development.git
 
 # Navigate into the folder
 cd web-development
